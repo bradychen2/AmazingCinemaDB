@@ -1,6 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const app = express()
+var app = express()
 const port = 3000
 
 app.engine('hbs', exphbs({
