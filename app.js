@@ -13,6 +13,7 @@ app.set('view engine', 'hbs')
 // Homepage
 app.get('/', (req, res) => {
   res.render('index')
+  
 })
 
 // Movies & Auditoriums page
