@@ -13,7 +13,7 @@ app.set('view engine', 'hbs')
 // Homepage
 app.get('/', (req, res) => {
   res.render('index')
-  
+
 })
 
 // Movies & Auditoriums page
@@ -42,5 +42,7 @@ app.get('/projectors', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`App is listening on http://localhost:${port}`)
+  console.log(
+    `Express started on http://flip1.engr.oregonstate.edu:${port}; press Ctrl-C to terminate.`
+  )
 })
