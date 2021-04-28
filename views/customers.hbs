@@ -4,16 +4,12 @@
   <form class="row" action="" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
-        <label for="customer-id" class="form-label mx-2">customer id</label>
-        <input id="customer-id" type="number" class="form-control" name="customerId">
-      </div>
-      <div class="input-group mb-3 align-items-center">
         <label for="name" class="form-label mx-2">name</label>
         <input id="name" type="text" class="form-control" name="name">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="email" class="form-label mx-2">email</label>
-        <input id="email" type="email" class="form-control" name="email" placeholder="name@example.com" >
+        <input id="email" type="email" class="form-control" name="email" placeholder="name@example.com">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="phone" class="form-label mx-2">phone</label>
@@ -31,10 +27,10 @@
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
-          <option selected value="customerId" >customer id</option>
+          <option selected value="customerId">customer id</option>
           <option value="name">name</option>
         </select>
-        <input type="number" class="form-control mx-2" name="searchNumber">
+        <input type="text" class="form-control mx-2" name="searchKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>

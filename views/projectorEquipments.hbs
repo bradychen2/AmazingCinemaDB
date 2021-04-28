@@ -4,12 +4,8 @@
   <form class="row" action="" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
-        <label for="projector-equipment-id" class="form-label mx-2">projector equipment id</label>
-        <input id="projector-equipment-id" type="number" class="form-control" name="projectorEquipmentId">
-      </div>
-      <div class="input-group mb-3 align-items-center">
         <label for="type" class="form-label mx-2">type</label>
-        <input id="name" type="text" class="form-control" name="type">
+        <input id="type" type="text" class="form-control" name="type">
       </div>
       <div>
         <input class="btn btn-primary " type="submit" value="Insert">
@@ -23,10 +19,10 @@
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
-          <option selected value="projectorEquipmentId" >projector equipment id</option>
-          <option value="type">name</option>
+          <option selected value="projectorEquipmentId">projector equipment id</option>
+          <option value="type">type</option>
         </select>
-        <input type="number" class="form-control mx-2" name="searchNumber">
+        <input type="text" class="form-control mx-2" name="searchKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -36,10 +32,8 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">customer_id</th>
-        <th scope="col">name</th>
-        <th scope="col">email</th>
-        <th scope="col">phone</th>
+        <th scope="col">projector_equipment_id</th>
+        <th scope="col">type</th>
       </tr>
     </thead>
     <tbody>
@@ -47,19 +41,13 @@
       <tr>
         <th scope="row">1</th>
         <td>x</td>
-        <td>x</td>
-        <td>x</td>
       </tr>
       <tr>
         <th scope="row">2</th>
         <td>x</td>
-        <td>x</td>
-        <td>x</td>
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>x</td>
-        <td>x</td>
         <td>x</td>
       </tr>
     </tbody>
