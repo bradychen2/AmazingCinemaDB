@@ -25,6 +25,22 @@
       </div>
     </div>
   </form>
+
+  {{!-- Filter --}}
+  <form class="row" action="" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group my-3 align-items-center">
+        <label for="search" class="form-label mx-2">Search By</label>
+        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+          <option selected>Search By</option>
+          <option value="movieAuditoriumId">name</option>
+        </select>
+        <input type="number" class="form-control mx-2" name="searchNumber">
+        <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
+      </div>
+    </div>
+  </form>
+
   {{!-- Table --}}
   <table class="table table-striped">
     <thead>
@@ -97,15 +113,33 @@
       </div>
     </div>
   </form>
+
+  {{!-- Filter --}}
+  <form class="row" action="" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group my-3 align-items-center">
+        <label for="search" class="form-label mx-2">Search By</label>
+        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+          <option selected>Search By</option>
+          <option value="movieAuditoriumId">auditoriums.name</option>
+          <option value="movieAuditoriumId">theaters.name</option>
+          <option value="movieAuditoriumId">projector_equipments.type</option>
+        </select>
+        <input type="number" class="form-control mx-2" name="searchNumber">
+        <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
+      </div>
+    </div>
+  </form>
+
   {{!-- Table --}}
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">auditorium_id</th>
-        <th scope="col">name</th>
+        <th scope="col">auditoriums.name</th>
         <th scope="col">number_of_seats</th>
-        <th scope="col">theater_id</th>
-        <th scope="col">projector_equipment_id</th>
+        <th scope="col">theaters.name</th>
+        <th scope="col">projector_equipments.type</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -115,8 +149,8 @@
         <th scope="row">1</th>
         <td>Red</td>
         <td>200</td>
-        <td>1</td>
-        <td>1</td>
+        <td>Amazing Century</td>
+        <td>Digital</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
@@ -124,8 +158,8 @@
         <th scope="row">2</th>
         <td>Blue</td>
         <td>150</td>
-        <td>1</td>
-        <td>2</td>
+        <td>Amazing Century</td>
+        <td>IMAX</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
@@ -133,8 +167,8 @@
         <th scope="row">3</th>
         <td>Green</td>
         <td>250</td>
-        <td>1</td>
-        <td>3</td>
+        <td>Amazing Century</td>
+        <td>3D</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
@@ -165,13 +199,31 @@
       </div>
     </div>
   </form>
+
+  {{!-- Filter --}}
+  <form class="row" action="" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group my-3 align-items-center">
+        <label for="search" class="form-label mx-2">Search By</label>
+        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+          <option selected>Search By</option>
+          <option value="movieAuditoriumId">movies.name</option>
+          <option value="movieAuditoriumId">auditoriums.name</option>
+          <option value="movieAuditoriumId">time_slot</option>
+        </select>
+        <input type="number" class="form-control mx-2" name="searchNumber">
+        <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
+      </div>
+    </div>
+  </form>
+
   {{!-- Table --}}
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">movie_auditorium_id</th>
-        <th scope="col">movie_id</th>
-        <th scope="col">auditorium_id</th>
+        <th scope="col">movies.name</th>
+        <th scope="col">auditoriums.name</th>
         <th scope="col">time_slot</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -180,24 +232,24 @@
     <tbody>
       <tr>
         <th scope="row">1</th>
-        <td>1</td>
-        <td>1</td>
+        <td>Star Wars</td>
+        <td>Red</td>
         <td>14:30</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
       <tr>
         <th scope="row">2</th>
-        <td>2</td>
-        <td>2</td>
+        <td>Jurassic Park</td>
+        <td>Blue</td>
         <td>08:30</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>3</td>
-        <td>3</td>
+        <td>The Godfather</td>
+        <td>Green</td>
         <td>10:00</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
