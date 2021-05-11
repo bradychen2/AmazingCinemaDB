@@ -32,8 +32,9 @@
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
           <option selected>Search By</option>
-          <option value="movieAuditoriumId">movie_auditorium_id</option>
-          <option value="customerId">customer_id</option>
+          <option value="movieAuditoriumId">movies.name</option>
+          <option value="movieAuditoriumId">auditoriums.name</option>
+          <option value="customerId">customers.name</option>
         </select>
         <input type="number" class="form-control mx-2" name="searchNumber">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
@@ -46,8 +47,9 @@
     <thead>
       <tr>
         <th scope="col">ticket_id</th>
-        <th scope="col">movie_auditorium_id</th>
-        <th scope="col">customer_id</th>
+        <th scope="col">movies.name</th>
+        <th scope="col">auditoriums.name</th>
+        <th scope="col">customers.name</th>
         <th scope="col">seat</th>
         <th scope="col">time</th>
         <th scope="col">price</th>
@@ -58,8 +60,9 @@
     <tbody>
       <tr>
         <th scope="row">1</th>
-        <td>1</td>
-        <td>2</td>
+        <td>Star Wars</td>
+        <td>Red</td>
+        <td>Batman</td>
         <td>A19</td>
         <td>2021-08-01-14:00</td>
         <td>250</td>
@@ -68,8 +71,9 @@
       </tr>
       <tr>
         <th scope="row">2</th>
-        <td>1</td>
-        <td></td>
+        <td>Jurassic Park</td>
+        <td>Blue</td>
+        <td>Superman</td>
         <td>G17</td>
         <td>2020-05-06-14:00</td>
         <td>400</td>
@@ -78,8 +82,9 @@
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>2</td>
-        <td>1</td>
+        <td>The Godfather</td>
+        <td>Green</td>
+        <td></td>
         <td>H21</td>
         <td>2020-06-24-11:00</td>
         <td>250</td>
