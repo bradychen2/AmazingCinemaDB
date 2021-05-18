@@ -2,11 +2,11 @@
 <div class="container">
   <h2>Movies</h2>
   {{!-- Form --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/movies" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="movie-name" class="form-label mx-2">name</label>
-        <input id="movie-name" type="text" class="form-control" name="name" placeholder="movie name">
+        <input id="movie-name" type="text" class="form-control" name="movieName" placeholder="movie name">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="release-date" class="form-label mx-2">release date</label>
@@ -74,11 +74,12 @@
 <div class="container">
   <h2>Auditoriums</h2>
   {{!-- Form --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/auditoriums" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="auditorium-name" class="form-label mx-2">name</label>
-        <input id="auditorium-name" type="text" class="form-control" name="name" placeholder="auditorium name">
+        <input id="auditorium-name" type="text" class="form-control" name="auditoriumName"
+          placeholder="auditorium name">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="number-of-seats" class="form-label mx-2">number of seats</label>
@@ -132,7 +133,7 @@
       {{#each auditoriums}}
       <tr>
         <th scope="row">{{this.auditorium_id}}</th>
-        <td>{{this.name}}</td>
+        <td>{{this.auditorium_name}}</td>
         <td>{{this.number_of_seats}}</td>
         <td>{{this.theaters_name}}</td>
         <td>{{this.projector_equipment_type}}</td>
@@ -148,7 +149,7 @@
 <div class="container">
   <h2>Movies Auditoriums</h2>
   {{!-- Form --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/moviesAuditoriums" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="movie-id" class="form-label mx-2">movie id</label>

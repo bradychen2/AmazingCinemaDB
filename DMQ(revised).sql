@@ -221,7 +221,6 @@ WHERE
 
 
 
--- ----- INSERT ----- --
 -- Movies:
 -- INSERT:
 INSERT INTO Movies (name, release_date, out_of_theater_date, rating ) VALUES(
