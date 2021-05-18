@@ -1,5 +1,9 @@
+const queries = {
+
+}
+
 const customerController = {
-  getCustomers: (req, res) => {
+  displayCustomers: (req, res) => {
     res.render('customers')
   }
 }

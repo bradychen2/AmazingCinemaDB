@@ -1,5 +1,9 @@
+const queries = {
+
+}
+
 const projectorController = {
-  getProjectors: (req, res) => {
+  displayProjectors: (req, res) => {
     res.render('projectorEquipments')
   }
 }

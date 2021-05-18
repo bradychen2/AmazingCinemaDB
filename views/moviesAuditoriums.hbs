@@ -55,33 +55,17 @@
       </tr>
     </thead>
     <tbody>
+      {{#each movies}}
       <tr>
-        <th scope="row">1</th>
-        <td>Star Wars</td>
-        <td>1977-06-06</td>
-        <td>1977-11-11</td>
-        <td>G</td>
+        <th scope="row">{{this.movie_id}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.release_date}}</td>
+        <td>{{this.out_of_theater_date}}</td>
+        <td>{{this.rating}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jurassic Park</td>
-        <td>1993-07-07</td>
-        <td>1993-12-01</td>
-        <td>PG</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>The Godfather</td>
-        <td>1972-05-01</td>
-        <td>1972-10-01</td>
-        <td>PG-13</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
@@ -145,33 +129,17 @@
       </tr>
     </thead>
     <tbody>
+      {{#each auditoriums}}
       <tr>
-        <th scope="row">1</th>
-        <td>Red</td>
-        <td>200</td>
-        <td>Amazing Century</td>
-        <td>Digital</td>
+        <th scope="row">{{this.auditorium_id}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.number_of_seats}}</td>
+        <td>{{this.theaters_name}}</td>
+        <td>{{this.projector_equipment_type}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Blue</td>
-        <td>150</td>
-        <td>Amazing Century</td>
-        <td>IMAX</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Green</td>
-        <td>250</td>
-        <td>Amazing Century</td>
-        <td>3D</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
@@ -230,30 +198,17 @@
       </tr>
     </thead>
     <tbody>
+      {{#each moviesAuditoriums}}
       <tr>
-        <th scope="row">1</th>
-        <td>Star Wars</td>
-        <td>Red</td>
-        <td>14:30</td>
+        <th scope="row">{{this.movie_auditorium_id}}</th>
+        <td>{{this.movies_name}}</td>
+        <td>{{this.auditoriums_name}}</td>
+        <td>{{this.time_slot}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
+
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jurassic Park</td>
-        <td>Blue</td>
-        <td>08:30</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>The Godfather</td>
-        <td>Green</td>
-        <td>10:00</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

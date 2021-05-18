@@ -9,10 +9,9 @@ module.exports = (app) => {
   app.get('/', (req, res) => {
     res.render('index')
   })
-
-  app.get('/movies', movieAudiController.getMoviesAuditoriums)
-  app.get('/tickets', ticketController.getTickets)
-  app.get('/theaters', theaterController.getTheaters)
-  app.get('/customers', customerController.getCustomers)
-  app.get('/projectors', projectorController.getProjectors)
+  app.get('/movies', movieAudiController.displayMoviesAuditoriums)
+  app.get('/tickets', ticketController.displayTickets)
+  app.get('/theaters', theaterController.displayTheaters)
+  app.get('/customers', customerController.displayCustomers)
+  app.get('/projectors', projectorController.displayProjectors)
 }

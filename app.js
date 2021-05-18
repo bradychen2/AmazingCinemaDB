@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mysql = require('./config/mysql')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 var app = express()
@@ -11,6 +12,7 @@ app.engine('hbs', exphbs({
   defaultLayout: 'main'
 }))
 app.set('view engine', 'hbs')
+app.set('mysql', mysql)
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: true }))
 

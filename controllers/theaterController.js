@@ -1,5 +1,9 @@
+const queries = {
+
+}
+
 const theaterController = {
-  getTheaters: (req, res) => {
+  displayTheaters: (req, res) => {
     res.render('theaters')
   }
 }

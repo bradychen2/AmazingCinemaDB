@@ -1,5 +1,9 @@
+const queries = {
+
+}
+
 const ticketController = {
-  getTickets: (req, res) => {
+  displayTickets: (req, res) => {
     res.render('tickets')
   }
 }
