@@ -62,8 +62,8 @@
         <td>{{this.release_date}}</td>
         <td>{{this.out_of_theater_date}}</td>
         <td>{{this.rating}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><button class="btn btn-secondary" href="/movies/:{{this.movie_id}}">Edit</button></td>
+        <td><button class="btn btn-danger" href="/movies/:{{this.movie_id}}">Delete</button></td>
       </tr>
       {{/each}}
     </tbody>
@@ -136,8 +136,8 @@
         <td>{{this.number_of_seats}}</td>
         <td>{{this.theaters_name}}</td>
         <td>{{this.projector_equipment_type}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><button class="btn btn-secondary" href="/auditoriums/:{{this.auditorium_id}}">Edit</button></td>
+        <td><button class="btn btn-danger" href="/auditoriums/:{{this.auditorium_id}}">Delete</button></td>
       </tr>
       {{/each}}
     </tbody>
@@ -204,8 +204,8 @@
         <td>{{this.movies_name}}</td>
         <td>{{this.auditoriums_name}}</td>
         <td>{{this.time_slot}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><button class="btn btn-secondary" href="/moviesAuditoriums/{{this.movie_auditorium_id}}">Edit</button></td>
+        <td><button class="btn btn-danger" href="/moviesAuditoriums/{{this.movie_auditorium_id}}">Delete</button></td>
 
       </tr>
       {{/each}}

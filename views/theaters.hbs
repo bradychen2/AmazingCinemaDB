@@ -50,30 +50,16 @@
       </tr>
     </thead>
     <tbody>
+      {{#each theaters}}
       <tr>
-        <th scope="row">1</th>
-        <td>Amazing Century</td>
-        <td>10250 Santa Monica Blvd #2000, Los Angeles, CA 90067</td>
-        <td>310-777-2222</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <th scope="row">{{this.theater_id}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.address}}</td>
+        <td>{{this.phone}}</td>
+        <td><button class="btn btn-secondary" href="/theaters/:{{this.theater_id}}">Edit</button></td>
+        <td><button class="btn btn-danger" href="/theaters/:{{this.theater_id}}">Delete</button></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Amazing Empire</td>
-        <td>234 W 42nd St, New York, NY 10036</td>
-        <td>212-333-2555</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Amazing Pacific</td>
-        <td>600 Pine St #400, Seattle, WA 98101</td>
-        <td>206-655-8999</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

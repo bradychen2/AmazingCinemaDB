@@ -66,7 +66,7 @@ const movieAudiController = {
       context.movies = await queries.getMovies(res, mysql)
       context.auditoriums = await queries.getAuditoriums(res, mysql)
       context.moviesAuditoriums = await queries.getMoviesAuditoriums(res, mysql)
-      console.log(context.moviesAuditoriums)
+
       return res.render('moviesAuditoriums', context)
     } catch (err) {
       console.log(err)
