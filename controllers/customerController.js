@@ -1,6 +1,4 @@
-const queries = {
-
-}
+const queries = require('../queries/customerQueries')
 
 const customerController = {
   displayCustomers: (req, res) => {

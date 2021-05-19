@@ -1,6 +1,4 @@
-const queries = {
-
-}
+const queries = require('../queries/projectorQueries')
 
 const projectorController = {
   displayProjectors: (req, res) => {

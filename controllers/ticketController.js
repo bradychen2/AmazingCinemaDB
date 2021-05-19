@@ -1,6 +1,4 @@
-const queries = {
-
-}
+const queries = require('../queries/ticketQueries')
 
 const ticketController = {
   displayTickets: (req, res) => {
