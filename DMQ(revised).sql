@@ -1,6 +1,7 @@
 -- ------ Display ------ --
 -- Movies:
-SELECT movie_id, name, release_date, out_of_theater_date, rating FROM Movies;
+SELECT movie_id, name, release_date, out_of_theater_date, rating FROM Movies
+ORDER BY movie_id;
 
 -- Auditoriums:
 SELECT auditorium_id, 
@@ -9,7 +10,8 @@ SELECT auditorium_id,
 	Projector_Equipments.type AS projector_equipment_type 
 FROM Auditoriums 
 INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id
-INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id;
+INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id
+ORDER BY auditorium_id;
 
 -- Movies_Auditoriums:
 SELECT Movies_Auditoriums.movie_auditorium_id, 
@@ -18,7 +20,8 @@ SELECT Movies_Auditoriums.movie_auditorium_id,
     time_slot
 FROM Movies_Auditoriums
 INNER JOIN Movies ON Movies_Auditoriums.movie_id=Movies.movie_id
-INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id=Auditoriums.auditorium_id;
+INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id=Auditoriums.auditorium_id
+ORDER BY Movies_Auditoriums.movie_auditorium_id;
 
 -- Tickets:
 SELECT DISTINCT
@@ -67,9 +70,9 @@ WHERE LOWER(`name`) LIKE LOWER(%:mov_name_from_webpage%);
 -- Auditoriums:
 -- filter by auditoriums.name
 SELECT `auditorium_id`, 
-	auditoriums.`name` AS auditorium_name, number_of_seats, 
-	theaters.`name` AS theaters_name, 
-	projector_equipments.`type` AS projector_equipment_type 
+		auditoriums.`name` AS auditorium_name, number_of_seats, 
+		theaters.`name` AS theaters_name, 
+		projector_equipments.`type` AS projector_equipment_type 
 FROM auditoriums 
 INNER JOIN theaters ON auditoriums.`theater_id` = Theaters.`theater_id`
 INNER JOIN projector_equipments ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id`
@@ -78,7 +81,7 @@ ORDER BY auditoriums.auditorium_id;
 
 -- filter by theaters.name
 SELECT auditorium_id, 
-	Auditoriums.name AS auditorium_name, number_of_seats, 
+		Auditoriums.name AS auditorium_name, number_of_seats, 
     Theaters.name AS theaters_name, 
     Projector_Equipments.type AS projector_equipments_type 
 FROM Auditoriums 
@@ -88,37 +91,39 @@ WHERE LOWER(Theaters.name) LIKE (%:aud_theater_name_from_webpage%)
 ORDER BY Auditoriums.auditorium_id;
 
 -- filter by projector.type
-SELECT auditorium_id, 
-	Auditoriums.name AS auditorium_name, number_of_seats, 
-	Theaters.name AS theaters_name, 
-	Projector_Equipments.type AS projector_equipments_type 
-FROM Auditoriums 
-INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id
-INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id
-WHERE LOWER(Projector_Equipments.type) LIKE (%:aud_equip_type_from_webpage%)
-ORDER BY Auditoriums.auditorium_id;
+SELECT `auditorium_id`, \
+		auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+		theaters.`name` AS theater_name, \
+		projector_equipments.`type` AS projector_equipment_type \
+FROM auditoriums \
+INNER JOIN theaters \
+ON auditoriums.`theater_id` = Theaters.`theater_id` \
+INNER JOIN projector_equipments \
+ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id` \
+WHERE LOWER(projector_equipments.type) LIKE LOWER(%:aud_projector_type_from_webpage%) \
+ORDER BY auditoriums.auditorium_id;
 
 -- Movies_Auditoriums:
 -- filter by movies.name
-SELECT Movies_Auditoriums.movie_auditorium_id, 
-	Movies.name AS movies_name, 
-	Auditoriums.name AS auditoriums_name, 
-    time_slot
-FROM Movies_Auditoriums
-INNER JOIN Movies ON Movies_Auditoriums.movie_id=Movies.movie_id
-INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id=Auditoriums.auditorium_id
-WHERE Movies.name = :M_A_movie_name_from_webpage
+SELECT Movies_Auditoriums.movie_auditorium_id, \
+		Movies.name AS movie_name, \
+		Auditoriums.name AS auditorium_name, \
+		time_slot \
+FROM Movies_Auditoriums \
+INNER JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
+INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
+WHERE LOWER(Movies.name) LIKE LOWER(%:M_A_movie_name_from_webpage%) \
 ORDER BY Movies_Auditoriums.movie_auditorium_id;
 
 -- filter by auditoriums.name
-SELECT Movies_Auditoriums.movie_auditorium_id, 
-	Movies.name AS movies_name, 
-	Auditoriums.name AS auditoriums_name, 
-	time_slot
-FROM Movies_Auditoriums
-INNER JOIN Movies ON Movies_Auditoriums.movie_id=Movies.movie_id
-INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id=Auditoriums.auditorium_id
-WHERE Auditoriums.name = :M_A_aud_name_from_webpage
+SELECT Movies_Auditoriums.movie_auditorium_id, \
+		Movies.name AS movie_name, \
+		Auditoriums.name AS auditorium_name, \
+		time_slot \
+FROM Movies_Auditoriums \
+INNER JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
+INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
+WHERE LOWER(Auditoriums.name) LIKE LOWER(%:M_A_auditorium_name_from_webpage%) \
 ORDER BY Movies_Auditoriums.movie_auditorium_id;
 
 -- filter by time_slot

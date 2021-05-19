@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.get('/', (req, res) => {
     res.render('index')
   })
-  // Movies & Auditoriums
+  // ---------------------Movies & Auditoriums---------------------
   // Display
   app.get('/movies', movieAudiController.displayMoviesAuditoriums)
   // Insert
