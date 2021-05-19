@@ -22,7 +22,7 @@ const theaterController = {
     ]
 
     try {
-      await queries.createMovie(mysql, inserts)
+      await queries.createTheater(mysql, inserts)
 
       return res.redirect('/theaters')
     } catch (err) {

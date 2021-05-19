@@ -22,7 +22,11 @@ module.exports = (app) => {
   app.get('/moviesAuditoriums/search', movieAudiController.filterMoviesAuditoriums)
 
   app.get('/tickets', ticketController.displayTickets)
+
+  // ---------------------------Theaters--------------------------
   app.get('/theaters', theaterController.displayTheaters)
+  app.post('/theaters', theaterController.insertTheater)
+
   app.get('/customers', customerController.displayCustomers)
   app.get('/projectors', projectorController.displayProjectors)
 }
