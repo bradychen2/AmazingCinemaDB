@@ -72,7 +72,7 @@ const movieAudiController = {
   filterMovies: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
-    let searchBy = req.query.searchMoviesBy
+    const searchBy = req.query.searchMoviesBy
     const searchKeyword = '%' + req.query.moviesKeyword + '%'
 
     try {
@@ -93,7 +93,7 @@ const movieAudiController = {
   filterAuditoriums: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
-    let searchBy = req.query.searchAuditoriumsBy
+    const searchBy = req.query.searchAuditoriumsBy
     const searchKeyword = '%' + req.query.auditoriumsKeyword + '%'
 
     try {
@@ -123,8 +123,8 @@ const movieAudiController = {
   filterMoviesAuditoriums: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
-    searchBy = req.query.searchMoviesAudisBy
-    searchKeyword = '%' + req.query.moviesAudisKeyword + '%'
+    const searchBy = req.query.searchMoviesAudisBy
+    const searchKeyword = '%' + req.query.moviesAudisKeyword + '%'
 
     try {
       switch (searchBy) {

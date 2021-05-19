@@ -26,6 +26,7 @@ module.exports = (app) => {
   // ---------------------------Theaters--------------------------
   app.get('/theaters', theaterController.displayTheaters)
   app.post('/theaters', theaterController.insertTheater)
+  app.get('/theaters/search', theaterController.filterTheaters)
 
   app.get('/customers', customerController.displayCustomers)
   app.get('/projectors', projectorController.displayProjectors)
