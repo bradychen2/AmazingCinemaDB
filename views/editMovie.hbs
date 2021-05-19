@@ -1,0 +1,29 @@
+<div class="container my-2">
+  <h2>Movies</h2>
+  {{!-- Form --}}
+  <form class="row" action="/movies/{{movie.movie_id}}?_method=PUT" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group mb-3 align-items-center">
+        <label for="movie-name" class="form-label mx-2">name</label>
+        <input id="movie-name" type="text" class="form-control" name="movieName" value="{{movie.name}}"
+          placeholder="movie name">
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="release-date" class="form-label mx-2">release date</label>
+        <input id="release-date" type="date" class="form-control" name="releaseDate" value={{movie.release_date}}>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="out-of-theater-date" class="form-label mx-2">out of theater date</label>
+        <input id="out-of-theater-date" type="date" class="form-control" name="outOfTheaterDate"
+          value={{movie.out_of_theater_date}}>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="rating" class="form-label mx-2">rating</label>
+        <input id="rating" type="text" class="form-control" name="rating" value={{movie.rating}} placeholder="PG">
+      </div>
+      <div>
+        <input class="btn btn-primary" type="submit" value="Update">
+      </div>
+    </div>
+  </form>
+</div>
