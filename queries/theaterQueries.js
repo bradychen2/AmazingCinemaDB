@@ -16,6 +16,20 @@ const queries = {
       })
     })
   },
+
+  createTheater: (mysql, inserts) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "INSERT INTO Theaters(name, address, phone) VALUES(?, ?, ?);",
+        inserts,
+        (error, results, fields) => {
+          if (error) {
+            console.log(error)
+          }
+          resolve()
+        })
+    })
+  }
 }
 
 module.exports = queries
