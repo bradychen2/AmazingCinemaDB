@@ -23,18 +23,21 @@ const queries = {
         });
       });
     },
-    searchCustomers: ((res, mysql, searchKeyword) => {
+    searchCustomers: (res, mysql, searchKeyword) => {
       return new Promise((resolve, reject) => {
-        mysql.pool.query(sql_search,searchKeyword,
+        mysql.pool.query(
+          sql_search,
+          searchKeyword,
           (error, results, fields) => {
             if (error) {
-              res.write(JSON.stringify(error))
-              res.end()
+              res.write(JSON.stringify(error));
+              res.end();
             }
-            resolve(results)
-          })
-      })
-    })
-}
+            resolve(results);
+          }
+        );
+      });
+    }
 
+}
 module.exports = queries

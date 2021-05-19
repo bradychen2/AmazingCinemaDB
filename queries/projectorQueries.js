@@ -24,8 +24,8 @@ const queries = {
           console.log(error);
         }
         resolve();
-      });
-    });
+      })
+    })
   },
   searchProjectors: ((res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {

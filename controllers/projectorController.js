@@ -24,7 +24,7 @@ const projectorController = {
     try {
       await queries.createProjectors(mysql, inserts)
 
-      return res.redirect('/projectorEquipments')
+      return res.redirect('projectorEquipments')
     } catch (err) {
       console.log(err)
     }
