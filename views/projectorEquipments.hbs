@@ -18,11 +18,11 @@
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
-        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+        <select id="search" class="form-select form-control mx-2" name="searchProjBy" aria-label="Default select example">
           <option selected value="projectorEquipmentId">Search By</option>
           <option value="type">type</option>
         </select>
-        <input type="text" class="form-control mx-2" name="searchKeyword">
+        <input type="text" class="form-control mx-2" name="Bytype">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -39,25 +39,14 @@
       </tr>
     </thead>
     <tbody>
-
+      {{#each projector}}
       <tr>
-        <th scope="row">1</th>
-        <td>Digital</td>
+        <th scope="row">{{projector_equipment_id}}</th>
+        <td>{{type}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>IMAX</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>3D</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

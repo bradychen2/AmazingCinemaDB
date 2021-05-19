@@ -13,7 +13,7 @@
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="phone" class="form-label mx-2">phone</label>
-        <input id="phone" type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+        <input id="phone" type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx">
       </div>
       <div>
         <input class="btn btn-primary " type="submit" value="Insert">
@@ -26,11 +26,11 @@
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
-        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+        <select id="search" class="form-select form-control mx-2" name="searchCusBy">
           <option selected value="customerId">Search By</option>
           <option value="name">name</option>
         </select>
-        <input type="text" class="form-control mx-2" name="searchKeyword">
+        <input type="text" class="form-control mx-2" name="searchCusName">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -49,31 +49,16 @@
       </tr>
     </thead>
     <tbody>
-
+      {{#each customers}}
       <tr>
-        <th scope="row">1</th>
-        <td>Batman</td>
-        <td>batman@batmail.com</td>
-        <td>111-555-8888</td>
+        <th scope="row">{{customer_id}}</th>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>{{phone}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Superman</td>
-        <td>superman@supermail.com</td>
-        <td>222-333-4444</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Spiderman</td>
-        <td>spiderman@spidermail.com</td>
-        <td>777-888-9999</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

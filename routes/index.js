@@ -21,8 +21,6 @@ module.exports = (app) => {
   app.get('/auditoriums/search', movieAudiController.filterAuditoriums)
   app.get('/moviesAuditoriums/search', movieAudiController.filterMoviesAuditoriums)
 
-  app.get('/tickets', ticketController.displayTickets)
-
   // ---------------------------Theaters--------------------------
   app.get('/theaters', theaterController.displayTheaters)
   app.post('/theaters', theaterController.insertTheater)
@@ -30,4 +28,19 @@ module.exports = (app) => {
 
   app.get('/customers', customerController.displayCustomers)
   app.get('/projectors', projectorController.displayProjectors)
+
+
+  // ----------------- Tickets -------------------
+  app.get('/tickets',ticketController.displayTickets)
+  app.post('/tickets',ticketController.insertTickets)
+
+  // projectors
+  app.get('/projectorEquipments',projectorController.displayProjectors)
+  app.post('/projectorEquipments',projectorController.insertProjectors)
+  app.get('/projectorEquipments/search',projectorController.filterProjectors)
+
+  //customers
+  app.get('/customers',customerController.displayCustomers)
+  app.post('/customers',customerController.insertCustomers)
+  app.get('/customers/search',customerController.filterCustomers)
 }

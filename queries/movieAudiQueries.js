@@ -6,14 +6,16 @@ const queries = {
         name, \
         release_date, \
         out_of_theater_date, \
-        rating FROM Movies;", (error, results, fields) => {
-        if (error) {
-          res.write(JSON.stringify(error))
-          res.end()
+        rating FROM Movies;",
+        (error, results, fields) => {
+          if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+          }
+          resolve(results);
         }
-        resolve(results)
-      })
-    })
+      );
+    });
   },
 
   getAuditoriums: (res, mysql) => {
@@ -26,14 +28,16 @@ const queries = {
       FROM Auditoriums \
       INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id \
       INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id \
-      ORDER BY auditorium_id;", (error, results, fields) => {
-        if (error) {
-          res.write(JSON.stringify(error))
-          res.end()
+      ORDER BY auditorium_id;",
+        (error, results, fields) => {
+          if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+          }
+          resolve(results);
         }
-        resolve(results)
-      })
-    })
+      );
+    });
   },
 
   getMoviesAuditoriums: (res, mysql) => {
@@ -46,14 +50,16 @@ const queries = {
       FROM Movies_Auditoriums \
       INNER JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
       INNER JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
-      ORDER BY Movies_Auditoriums.movie_auditorium_id;", (error, results, fields) => {
-        if (error) {
-          res.write(JSON.stringify(error))
-          res.end()
+      ORDER BY Movies_Auditoriums.movie_auditorium_id;",
+        (error, results, fields) => {
+          if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+          }
+          resolve(results);
         }
-        resolve(results)
-      })
-    })
+      );
+    });
   },
 
   createMovie: (mysql, inserts) => {
@@ -65,11 +71,12 @@ const queries = {
         inserts,
         (error, results, fields) => {
           if (error) {
-            console.log(error)
+            console.log(error);
           }
-          resolve()
-        })
-    })
+          resolve();
+        }
+      );
+    });
   },
 
   createAuditorium: (mysql, inserts) => {
@@ -81,12 +88,12 @@ const queries = {
         inserts,
         (error, results, fields) => {
           if (error) {
-            console.log(error)
+            console.log(error);
           }
-          resolve()
+          resolve();
         }
-      )
-    })
+      );
+    });
   },
 
   createMovieAuditorium: (mysql, inserts) => {
@@ -98,12 +105,12 @@ const queries = {
         inserts,
         (error, results, fields) => {
           if (error) {
-            console.log(error)
+            console.log(error);
           }
-          resolve()
+          resolve();
         }
-      )
-    })
+      );
+    });
   },
 
   searchMovies: (res, mysql, searchKeyword) => {
@@ -119,12 +126,13 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchAudiByName: (res, mysql, searchKeyword) => {
@@ -144,12 +152,13 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchAudiByTheaterName: (res, mysql, searchKeyword) => {
@@ -169,12 +178,13 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchAudiByProjectorType: (res, mysql, searchKeyword) => {
@@ -194,12 +204,13 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchMAByMovieName: (res, mysql, searchKeyword) => {
@@ -217,12 +228,13 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchMAByAuditoriumName: (res, mysql, searchKeyword) => {
@@ -240,28 +252,26 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
+            res.write(JSON.stringify(error));
+            res.end();
           }
-          resolve(results)
-        })
-    })
+          resolve(results);
+        }
+      );
+    });
   },
 
   searchMAByTimeSlot: (res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {
-      mysql.pool.query(
-        "",
-        searchKeyword,
-        (error, results, fields) => {
-          if (error) {
-            res.write(JSON.stringify(error))
-            res.end()
-          }
-          resolve(results)
-        })
-    })
-  }
-}
+      mysql.pool.query("", searchKeyword, (error, results, fields) => {
+        if (error) {
+          res.write(JSON.stringify(error));
+          res.end();
+        }
+        resolve(results);
+      });
+    });
+  },
+};
 
-module.exports = queries
+module.exports = queries;

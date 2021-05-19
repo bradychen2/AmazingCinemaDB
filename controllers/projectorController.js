@@ -1,9 +1,54 @@
 const queries = require('../queries/projectorQueries')
 
 const projectorController = {
-  displayProjectors: (req, res) => {
-    res.render('projectorEquipments')
+  displayProjectors: async (req, res) => {
+    
+    let context = {}
+    const mysql = req.app.get('mysql')
+  
+    try {
+      context.projector = await queries.getProjectors(res, mysql)
+      // console.log(context.projector)
+      res.render('projectorEquipments',context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  insertProjectors: async (req,res) =>{
+    const mysql = req.app.get('mysql')
+    const inserts = [
+      req.body.type
+    ]
+    console.log(inserts)
+
+    try {
+      await queries.createProjectors(mysql, inserts)
+
+      return res.redirect('/projectorEquipments')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  
+  filterProjectors: async (req,res) => {
+    const mysql = req.app.get('mysql')
+    let context = {}
+    const searchBy = req.query.searchProjBy
+    const searchKeyword = '%' + req.query.Bytype + '%'
+
+    try {
+      if (searchBy.length === 0) {
+        context.projector = await queries.getProjectors(res, mysql)
+      } else {
+        context.projector = await queries.searchProjectors(res, mysql, searchKeyword)
+      }
+      res.render('projectorEquipments', context)
+    } catch (err) {
+      console.log(err)
+    }
   }
+
+
 }
 
 module.exports = projectorController
