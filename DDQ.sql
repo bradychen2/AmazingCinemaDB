@@ -45,13 +45,14 @@ INSERT INTO `Customers` (`name`, `email`, `phone`) VALUES
 
 CREATE TABLE `Projector_Equipments` (
 	`projector_equipment_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `type` varchar(50) NOT NULL
+    `type` varchar(50) NOT NULL,
+    `price` DECIMAL NOT NULL 
 );
 
-INSERT INTO `Projector_Equipments` (`type`) VALUES 
-	('Digital'),
-    ('IMAX'),
-    ('3D');
+INSERT INTO `Projector_Equipments` (`type`,`price`) VALUES 
+	('Digital','200'),
+    ('IMAX','300'),
+    ('3D','250');
 
 CREATE TABLE  `Auditoriums` (
 	`auditorium_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -102,25 +103,27 @@ CREATE TABLE `Tickets` (
 	`ticket_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `seat` varchar(50) NOT NULL,
     `time` datetime NOT NULL,
-    `price` decimal NOT NULL,
+    `projector_id` int NOT NULL,
     `movie_auditorium_id` int NOT NULL,
     `customer_id` int,
 	FOREIGN KEY (movie_auditorium_id)
     REFERENCES `Movies_Auditoriums` (movie_auditorium_id),
     FOREIGN KEY (customer_id)
-    REFERENCES `Customers` (customer_id)
+    REFERENCES `Customers` (customer_id),
+    FOREIGN KEY (projector_id)
+    REFERENCES `Projector_Equipments` (projector_equipment_id)
 );
 
-INSERT INTO `Tickets` (`seat`, `time`, `price`, `movie_auditorium_id`, `customer_id`) VALUES 
-	('E11', '1977-06-08-14:00:00', 200, 1, 1), ('E12', '1977-08-13-14:00:00', 200, 1, 1), ('G10', '1977-10-11-19:00:00', 250, 1, null),
-	('F15', '1993-07-07-21:30:00', 200, 2, 2), ('K18', '1993-08-01-10:00:00', 200, 2, 3), ('J21', '1993-09-15-12:20:00', 250, 2, 3),
-    ('H15', '1972-05-05-14:30:00', 200, 3, 3), ('I20', '1972-06-10-17:00:00', 200, 3, 3), ('F22', '1972-09-18-19:30:00', 250, 3, null),
-	('E11', '1977-06-08-14:00:00', 400, 4, 1), ('E12', '1977-08-13-14:00:00', 400, 4, 1), ('G10', '1977-10-11-19:00:00', 500, 4, null),
-	('F15', '1993-07-07-21:30:00', 400, 5, 2), ('K18', '1993-08-01-10:00:00', 400, 5, 3), ('J21', '1993-09-15-12:20:00', 400, 5, 3),
-    ('H15', '1972-05-05-14:30:00', 400, 6, 3), ('I20', '1972-06-10-17:00:00', 400, 6, 3), ('F22', '1972-09-18-19:30:00', 500, 6, null),
-	('E11', '1977-06-08-14:00:00', 300, 7, 1), ('E12', '1977-08-13-14:00:00', 300, 7, 1), ('G10', '1977-10-11-19:00:00', 375, 7, null),
-	('F15', '1993-07-07-21:30:00', 300, 8, 2), ('K18', '1993-08-01-10:00:00', 300, 8, 3), ('J21', '1993-09-15-12:20:00', 300, 8, 3),
-    ('H15', '1972-05-05-14:30:00', 300, 9, 3), ('I20', '1972-06-10-17:00:00', 300, 9, 3), ('F22', '1972-09-18-19:30:00', 375, 9, null);
+INSERT INTO `Tickets` (`seat`, `time`, `projector_id`, `movie_auditorium_id`, `customer_id`) VALUES 
+	('E11', '1977-06-08-14:00:00', 2, 1, 1), ('E12', '1977-08-13-14:00:00', 2, 1, 1), ('G10', '1977-10-11-19:00:00', 1, 1, null),
+	('F15', '1993-07-07-21:30:00', 2, 2, 2), ('K18', '1993-08-01-10:00:00', 2, 2, 3), ('J21', '1993-09-15-12:20:00', 1, 2, 3),
+    ('H15', '1972-05-05-14:30:00', 2, 3, 3), ('I20', '1972-06-10-17:00:00', 2, 3, 3), ('F22', '1972-09-18-19:30:00', 1, 3, null),
+	('E11', '1977-06-08-14:00:00', 3, 4, 1), ('E12', '1977-08-13-14:00:00', 2, 4, 1), ('G10', '1977-10-11-19:00:00', 2, 4, null),
+	('F15', '1993-07-07-21:30:00', 3, 5, 2), ('K18', '1993-08-01-10:00:00', 2, 5, 3), ('J21', '1993-09-15-12:20:00', 3, 5, 3),
+    ('H15', '1972-05-05-14:30:00', 3, 6, 3), ('I20', '1972-06-10-17:00:00', 3, 6, 3), ('F22', '1972-09-18-19:30:00', 2, 6, null),
+	('E11', '1977-06-08-14:00:00', 3, 7, 1), ('E12', '1977-08-13-14:00:00', 3, 7, 1), ('G10', '1977-10-11-19:00:00', 2, 7, null),
+	('F15', '1993-07-07-21:30:00', 3, 8, 2), ('K18', '1993-08-01-10:00:00', 3, 8, 3), ('J21', '1993-09-15-12:20:00', 2, 8, 3),
+    ('H15', '1972-05-05-14:30:00', 3, 9, 3), ('I20', '1972-06-10-17:00:00', 3, 9, 3), ('F22', '1972-09-18-19:30:00', 1, 9, null);
 
 
 
