@@ -27,15 +27,15 @@
   </form>
 
   {{!-- Filter --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/movies/search" method="GET">
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
-        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
-          <option selected>Search By</option>
+        <select id="search" class="form-select form-control mx-2" name="searchMoviesBy">
+          <option value="">Search By</option>
           <option value="movieName">name</option>
         </select>
-        <input type="text" class="form-control mx-2" name="searchKeyword">
+        <input type="text" class="form-control mx-2" name="moviesKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -100,17 +100,17 @@
   </form>
 
   {{!-- Filter --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/auditoriums/search" method="GET">
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
-        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
-          <option selected>Search By</option>
+        <select id="search" class="form-select form-control mx-2" name="searchAuditoriumsBy">
+          <option value="">Search By</option>
           <option value="auditoriumName">auditoriums.name</option>
           <option value="theaterName">theaters.name</option>
           <option value="projectorType">projector_equipments.type</option>
         </select>
-        <input type="text" class="form-control mx-2" name="searchKeyword">
+        <input type="text" class="form-control mx-2" name="auditoriumsKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -135,7 +135,7 @@
         <th scope="row">{{this.auditorium_id}}</th>
         <td>{{this.auditorium_name}}</td>
         <td>{{this.number_of_seats}}</td>
-        <td>{{this.theaters_name}}</td>
+        <td>{{this.theater_name}}</td>
         <td>{{this.projector_equipment_type}}</td>
         <td><button class="btn btn-secondary" href="/auditoriums/:{{this.auditorium_id}}">Edit</button></td>
         <td><button class="btn btn-danger" href="/auditoriums/:{{this.auditorium_id}}">Delete</button></td>
@@ -170,17 +170,17 @@
   </form>
 
   {{!-- Filter --}}
-  <form class="row" action="" method="POST">
+  <form class="row" action="/moviesAuditoriums/search" method="GET">
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
-        <select id="search" class="form-select form-control mx-2" aria-label="Default select example">
+        <select id="search" class="form-select form-control mx-2" name="searchMoviesAudisBy">
           <option selected>Search By</option>
           <option value="movieName">movies.name</option>
           <option value="auditoriumName">auditoriums.name</option>
-          <option value="timeSlot">time_slot</option>
+          {{!-- <option value="timeSlot">time_slot</option> --}}
         </select>
-        <input type="text" class="form-control mx-2" name="searchKeyword">
+        <input type="text" class="form-control mx-2" name="moviesAudisKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
       </div>
     </div>
@@ -202,12 +202,11 @@
       {{#each moviesAuditoriums}}
       <tr>
         <th scope="row">{{this.movie_auditorium_id}}</th>
-        <td>{{this.movies_name}}</td>
-        <td>{{this.auditoriums_name}}</td>
+        <td>{{this.movie_name}}</td>
+        <td>{{this.auditorium_name}}</td>
         <td>{{this.time_slot}}</td>
         <td><button class="btn btn-secondary" href="/moviesAuditoriums/{{this.movie_auditorium_id}}">Edit</button></td>
         <td><button class="btn btn-danger" href="/moviesAuditoriums/{{this.movie_auditorium_id}}">Delete</button></td>
-
       </tr>
       {{/each}}
     </tbody>

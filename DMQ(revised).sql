@@ -62,7 +62,7 @@ FROM Projector_Equipments;
 -- Movies:
 -- filter by name
 SELECT `movie_id`, `name`, `release_date`, `out_of_theater_date`, `rating` FROM movies 
-WHERE `name` = :mov_name_from_webpage;
+WHERE LOWER(`name`) LIKE LOWER(%:mov_name_from_webpage%);
 
 -- Auditoriums:
 -- filter by auditoriums.name
@@ -73,7 +73,7 @@ SELECT `auditorium_id`,
 FROM auditoriums 
 INNER JOIN theaters ON auditoriums.`theater_id` = Theaters.`theater_id`
 INNER JOIN projector_equipments ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id`
-WHERE Auditoriums.name = :aud_name_from_webpage
+WHERE LOWER(auditoriums.name) LIKE (%:aud_name_from_webpage%)
 ORDER BY auditoriums.auditorium_id;
 
 -- filter by theaters.name
@@ -84,7 +84,7 @@ SELECT auditorium_id,
 FROM Auditoriums 
 INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id
 INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id
-WHERE Theaters.name = :aud_theater_name_from_webpage
+WHERE LOWER(Theaters.name) LIKE (%:aud_theater_name_from_webpage%)
 ORDER BY Auditoriums.auditorium_id;
 
 -- filter by projector.type
@@ -95,7 +95,7 @@ SELECT auditorium_id,
 FROM Auditoriums 
 INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id
 INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id
-WHERE Projector_Equipments.type = :aud_equip_type_from_webpage
+WHERE LOWER(Projector_Equipments.type) LIKE (%:aud_equip_type_from_webpage%)
 ORDER BY Auditoriums.auditorium_id;
 
 -- Movies_Auditoriums:
