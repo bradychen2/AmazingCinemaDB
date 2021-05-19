@@ -31,8 +31,36 @@ const ticketController = {
     } catch (err) {
       console.log(err)
     }
+  },
+  filterTickets:async(req,res)=>{
+    const mysql = req.app.get('mysql')
+    let context = {}
+    const searchBy = req.query.searchTicBy
+    const searchKeyword = '%' + req.query.ticKey + '%'
+
+    try {
+      switch (searchBy) {
+        case 'movieName':
+          context.moviesAuditoriums = await queries.searchTicByMovName(res, mysql, searchKeyword)
+          break
+        case 'auditoriumName':
+          context.moviesAuditoriums = await queries.searchTicByAudName(res, mysql, searchKeyword)
+          break
+        case 'customerName':
+          context.moviesAuditoriums = await queries.searchTicByCusName(res, mysql, searchKeyword)
+          break
+        default:
+          context.moviesAuditoriums = await queries.getTickets(res, mysql)
+      }
+
+      context.tickets = await queries.getTickets(res, mysql)
+
+      return res.render('tickets', context)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   }
 
-}
 
 module.exports = ticketController

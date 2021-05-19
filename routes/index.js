@@ -33,6 +33,7 @@ module.exports = (app) => {
   // ----------------- Tickets -------------------
   app.get('/tickets',ticketController.displayTickets)
   app.post('/tickets',ticketController.insertTickets)
+  app.get('/tickets',ticketController.filterTickets)
 
   // projectors
   app.get('/projectorEquipments',projectorController.displayProjectors)
