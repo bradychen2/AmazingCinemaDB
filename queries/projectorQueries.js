@@ -1,8 +1,9 @@
 const sql_select =
   "SELECT projector_equipment_id, type FROM Projector_Equipments;";
-const sql_insert = 
+const sql_insert =
   "INSERT INTO Projector_Equipments(type) VALUES(?);";
-const sql_search = "SELECT projector_equipment_id, type FROM Projector_Equipments WHERE LOWER(type) LIKE LOWER(?);"
+const sql_search =
+  "SELECT projector_equipment_id, type FROM Projector_Equipments WHERE LOWER(type) LIKE LOWER(?);"
 
 
 const queries = {
@@ -29,7 +30,7 @@ const queries = {
   },
   searchProjectors: ((res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {
-      mysql.pool.query(sql_search,searchKeyword,
+      mysql.pool.query(sql_search, searchKeyword,
         (error, results, fields) => {
           if (error) {
             res.write(JSON.stringify(error))

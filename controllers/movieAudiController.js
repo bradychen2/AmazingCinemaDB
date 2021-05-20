@@ -1,4 +1,6 @@
-const queries = require('../queries/movieAudiQueries')
+const maQueries = require('../queries/movieAudiQueries')
+const theaterQueries = require('../queries/theaterQueries')
+const projectorQueries = require('../queries/projectorQueries')
 
 const movieAudiController = {
   displayMoviesAuditoriums: async (req, res) => {
@@ -6,9 +8,11 @@ const movieAudiController = {
     const mysql = req.app.get('mysql')
 
     try {
-      context.movies = await queries.getMovies(res, mysql)
-      context.auditoriums = await queries.getAuditoriums(res, mysql)
-      context.moviesAuditoriums = await queries.getMoviesAuditoriums(res, mysql)
+      context.movies = await maQueries.getMovies(res, mysql)
+      context.auditoriums = await maQueries.getAuditoriums(res, mysql)
+      context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
+      context.theaters = await theaterQueries.getTheaters(res, mysql)
+      context.projectors = await projectorQueries.getProjectors(res, mysql)
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {
@@ -26,7 +30,7 @@ const movieAudiController = {
     ]
 
     try {
-      await queries.createMovie(mysql, inserts)
+      await maQueries.createMovie(mysql, inserts)
 
       return res.redirect('/movies')
     } catch (err) {
@@ -44,7 +48,7 @@ const movieAudiController = {
     ]
 
     try {
-      await queries.createAuditorium(mysql, inserts)
+      await maQueries.createAuditorium(mysql, inserts)
 
       return res.redirect('/movies')
     } catch (err) {
@@ -61,7 +65,7 @@ const movieAudiController = {
     ]
 
     try {
-      await queries.createMovieAuditorium(mysql, inserts)
+      await maQueries.createMovieAuditorium(mysql, inserts)
 
       return res.redirect('/movies')
     } catch (err) {
@@ -77,12 +81,12 @@ const movieAudiController = {
 
     try {
       if (searchBy.length === 0) {
-        context.movies = await queries.getMovies(res, mysql)
+        context.movies = await maQueries.getMovies(res, mysql)
       } else {
-        context.movies = await queries.searchMovies(res, mysql, searchKeyword)
+        context.movies = await maQueries.searchMovies(res, mysql, searchKeyword)
       }
-      context.auditoriums = await queries.getAuditoriums(res, mysql)
-      context.moviesAuditoriums = await queries.getMoviesAuditoriums(res, mysql)
+      context.auditoriums = await maQueries.getAuditoriums(res, mysql)
+      context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {
@@ -99,20 +103,20 @@ const movieAudiController = {
     try {
       switch (searchBy) {
         case 'auditoriumName':
-          context.auditoriums = await queries.searchAudiByName(res, mysql, searchKeyword)
+          context.auditoriums = await maQueries.searchAudiByName(res, mysql, searchKeyword)
           break
         case 'theaterName':
-          context.auditoriums = await queries.searchAudiByTheaterName(res, mysql, searchKeyword)
+          context.auditoriums = await maQueries.searchAudiByTheaterName(res, mysql, searchKeyword)
           break
         case 'projectorType':
-          context.auditoriums = await queries.searchAudiByProjectorType(res, mysql, searchKeyword)
+          context.auditoriums = await maQueries.searchAudiByProjectorType(res, mysql, searchKeyword)
           break
         default:
-          context.auditoriums = await queries.getAuditoriums(res, mysql)
+          context.auditoriums = await maQueries.getAuditoriums(res, mysql)
       }
 
-      context.movies = await queries.getMovies(res, mysql)
-      context.moviesAuditoriums = await queries.getMoviesAuditoriums(res, mysql)
+      context.movies = await maQueries.getMovies(res, mysql)
+      context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {
@@ -129,20 +133,20 @@ const movieAudiController = {
     try {
       switch (searchBy) {
         case 'movieName':
-          context.moviesAuditoriums = await queries.searchMAByMovieName(res, mysql, searchKeyword)
+          context.moviesAuditoriums = await maQueries.searchMAByMovieName(res, mysql, searchKeyword)
           break
         case 'auditoriumName':
-          context.moviesAuditoriums = await queries.searchMAByAuditoriumName(res, mysql, searchKeyword)
+          context.moviesAuditoriums = await maQueries.searchMAByAuditoriumName(res, mysql, searchKeyword)
           break
         case 'timeSlot':
-          context.moviesAuditoriums = await queries.searchMAByTimeSlot(res, mysql, searchKeyword)
+          context.moviesAuditoriums = await maQueries.searchMAByTimeSlot(res, mysql, searchKeyword)
           break
         default:
-          context.moviesAuditoriums = await queries.getMoviesAuditoriums(res, mysql)
+          context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
       }
 
-      context.movies = await queries.getMovies(res, mysql)
-      context.auditoriums = await queries.getAuditoriums(res, mysql)
+      context.movies = await maQueries.getMovies(res, mysql)
+      context.auditoriums = await maQueries.getAuditoriums(res, mysql)
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {

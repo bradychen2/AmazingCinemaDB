@@ -86,12 +86,20 @@
         <input id="number-of-seats" type="number" class="form-control" name="seats" placeholder="200">
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="theater-id" class="form-label mx-2">theater id</label>
-        <input id="theater-id" type="number" class="form-control" name="theaterId">
+        <label for="theater-id" class="form-label mx-2">theater</label>
+        <select id="theater-id" class="form-select form-control mx-2" name="theaterId">
+          {{#each theaters}}
+          <option value={{this.theater_id}}>{{this.name}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="projector-id" class="form-label mx-2">projector id</label>
-        <input id="projector-id" type="number" class="form-control" name="projectorId">
+        <label for="projector-id" class="form-label mx-2">projector</label>
+        <select id="projector-id" class="form-select form-control mx-2" name="projectorId">
+          {{#each projectors}}
+          <option value={{this.projector_equipment_id}}>{{this.type}}</option>
+          {{/each}}
+        </select>
       </div>
       <div>
         <input class="btn btn-primary" type="submit" value="Insert">
@@ -152,12 +160,20 @@
   <form class="row" action="/moviesAuditoriums" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
-        <label for="movie-id" class="form-label mx-2">movie id</label>
-        <input id="movie-id" type="number" class="form-control" name="movieId">
+        <label for="movie-id" class="form-label mx-2">movie</label>
+        <select id="movie-id" class="form-select form-control mx-2" name="movieId">
+          {{#each movies}}
+          <option value={{this.movie_id}}>{{this.name}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="auditorium-id" class="form-label mx-2">auditorium id</label>
-        <input id="auditorium-id" type="number" class="form-control" name="auditoriumId">
+        <label for="auditorium-id" class="form-label mx-2">auditorium</label>
+        <select id="auditorium-id" class="form-select form-control mx-2" name="auditoriumId">
+          {{#each auditoriums}}
+          <option value={{this.auditorium_id}}>{{this.auditorium_name}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="time-slot" class="form-label mx-2">time slot</label>
