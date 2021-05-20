@@ -22,9 +22,9 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         "SELECT auditorium_id, \
-	          auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+	          Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
             Theaters.name AS theater_name, \
-            projector_equipments.`type` AS projector_equipment_type \
+            Projector_Equipments.`type` AS projector_equipment_type \
       FROM Auditoriums \
       INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id \
       INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id \
@@ -121,7 +121,7 @@ const queries = {
           `release_date`, \
           `out_of_theater_date`, \
           `rating` \
-          FROM movies \
+          FROM Movies \
           WHERE LOWER(name) LIKE LOWER(?);",
         searchKeyword,
         (error, results, fields) => {
@@ -139,16 +139,16 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         "SELECT `auditorium_id`, \
-	              auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
-                theaters.`name` AS theater_name, \
-                projector_equipments.`type` AS projector_equipment_type \
-          FROM auditoriums \
-          INNER JOIN theaters \
-          ON auditoriums.`theater_id` = Theaters.`theater_id` \
-          INNER JOIN projector_equipments \
-          ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id` \
-          WHERE LOWER(auditoriums.name) LIKE LOWER(?) \
-          ORDER BY auditoriums.auditorium_id;",
+	              Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+                Theaters.`name` AS theater_name, \
+                Projector_Equipments.`type` AS projector_equipment_type \
+          FROM Auditoriums \
+          INNER JOIN Theaters \
+          ON Auditoriums.`theater_id` = Theaters.`theater_id` \
+          INNER JOIN Projector_Equipments \
+          ON Auditoriums.`projector_equipment_id` = Projector_Equipments.`projector_equipment_id` \
+          WHERE LOWER(Auditoriums.name) LIKE LOWER(?) \
+          ORDER BY Auditoriums.auditorium_id;",
         searchKeyword,
         (error, results, fields) => {
           if (error) {
@@ -165,16 +165,16 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         "SELECT `auditorium_id`, \
-	              auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
-                theaters.`name` AS theater_name, \
-                projector_equipments.`type` AS projector_equipment_type \
-          FROM auditoriums \
-          INNER JOIN theaters \
-          ON auditoriums.`theater_id` = Theaters.`theater_id` \
-          INNER JOIN projector_equipments \
-          ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id` \
-          WHERE LOWER(theaters.name) LIKE LOWER(?) \
-          ORDER BY auditoriums.auditorium_id;",
+	              Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+                Theaters.`name` AS theater_name, \
+                Projector_Equipments.`type` AS projector_equipment_type \
+          FROM Auditoriums \
+          INNER JOIN Theaters \
+          ON Auditoriums.`theater_id` = Theaters.`theater_id` \
+          INNER JOIN Projector_Equipments \
+          ON Auditoriums.`projector_equipment_id` = Projector_Equipments.`projector_equipment_id` \
+          WHERE LOWER(Theaters.name) LIKE LOWER(?) \
+          ORDER BY Auditoriums.auditorium_id;",
         searchKeyword,
         (error, results, fields) => {
           if (error) {
@@ -191,16 +191,16 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         "SELECT `auditorium_id`, \
-	              auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
-                theaters.`name` AS theater_name, \
-                projector_equipments.`type` AS projector_equipment_type \
-          FROM auditoriums \
-          INNER JOIN theaters \
-          ON auditoriums.`theater_id` = Theaters.`theater_id` \
-          INNER JOIN projector_equipments \
-          ON auditoriums.`projector_equipment_id` = projector_equipments.`projector_equipment_id` \
-          WHERE LOWER(projector_equipments.type) LIKE LOWER(?) \
-          ORDER BY auditoriums.auditorium_id;",
+	              Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+                Theaters.`name` AS theater_name, \
+                Projector_Equipments.`type` AS projector_equipment_type \
+          FROM Auditoriums \
+          INNER JOIN Theaters \
+          ON Auditoriums.`theater_id` = Theaters.`theater_id` \
+          INNER JOIN Projector_Equipments \
+          ON Auditoriums.`projector_equipment_id` = Projector_Equipments.`projector_equipment_id` \
+          WHERE LOWER(Projector_Equipments.type) LIKE LOWER(?) \
+          ORDER BY Auditoriums.auditorium_id;",
         searchKeyword,
         (error, results, fields) => {
           if (error) {

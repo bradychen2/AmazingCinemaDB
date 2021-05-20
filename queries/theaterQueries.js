@@ -38,7 +38,7 @@ const queries = {
                 name, \
                 address, \
                 phone \
-          FROM theaters \
+          FROM Theaters \
           WHERE LOWER(name) LIKE LOWER(?);",
         searchKeyword,
         (error, results, fields) => {
