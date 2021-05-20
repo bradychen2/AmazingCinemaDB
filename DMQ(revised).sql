@@ -36,7 +36,8 @@ FROM Tickets
 	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
-	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id;
+	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
+	ORDER BY Tickets.ticket_id;
 
 -- Theaters:
 SELECT
@@ -150,7 +151,7 @@ FROM
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
-WHERE Movies.name = :tic_movies_name_from_webpage
+WHERE LOWER(Movies.name) LIKE LOWER(:tic_movies_name_from_webpage)
 ORDER BY Tickets.ticket_id;
 
 -- filter by the auditoriums.name
@@ -168,7 +169,7 @@ FROM
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
-WHERE Auditoriums.name = :tic_auditoriums_name_from_webpage
+WHERE LOWER(Auditoriums.name) LIKE LOWER(:tic_auditoriums_name_from_webpage)
 ORDER BY Tickets.ticket_id;
 
 -- filter by the customers.name
@@ -186,7 +187,7 @@ FROM
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
-WHERE Customers.name = :tic_Customers_name_from_webpage
+WHERE LOWER(Customers.name) LIKE LOWER(:tic_Customers_name_from_webpage)
 ORDER BY Tickets.ticket_id;
 
 	
@@ -212,7 +213,7 @@ SELECT
 FROM
 	Customers 
 WHERE
-	name = :customer_name_from_webpage;
+	LOWER(name) LIKE LOWER(:customer_name_from_webpage);
 
 -- Projector_Equipments:
 -- filter the projectors by its type
@@ -222,7 +223,7 @@ SELECT
 FROM
 	Projector_Equipments 
 WHERE
-	type = :projector_type_from_webpage;
+	LOWER(type) LIKE LOWER(:projector_type_from_webpage);
 
 
 
