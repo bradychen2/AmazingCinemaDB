@@ -235,7 +235,43 @@ const movieAudiController = {
     } catch (err) {
       console.log(err)
     }
-  }
+  },
+
+  deleteMovie: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const movie_id = req.params.id
+
+    try {
+      await maQueries.deleteMovie(res, mysql, movie_id)
+      return res.redirect('/movies')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  deleteAuditorium: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const auditorium_id = req.params.id
+
+    try {
+      await maQueries.deleteAuditorium(res, mysql, auditorium_id)
+      return res.redirect('/movies')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  deleteMovieAuditorium: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const movie_auditorium_id = req.params.id
+
+    try {
+      await maQueries.deleteMovieAuditorium(res, mysql, movie_auditorium_id)
+      return res.redirect('/movies')
+    } catch (err) {
+      console.log(err)
+    }
+  },
 }
 
 module.exports = movieAudiController

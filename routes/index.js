@@ -23,27 +23,35 @@ module.exports = (app) => {
   app.get('/movies/search', movieAudiController.filterMovies)
   app.get('/auditoriums/search', movieAudiController.filterAuditoriums)
   app.get('/moviesAuditoriums/search', movieAudiController.filterMoviesAuditoriums)
-  // Edit
+  // Delete
+  app.delete('/movies/:id', movieAudiController.deleteMovie)
+  app.delete('/auditoriums/:id', movieAudiController.deleteAuditorium)
+  app.delete('/moviesAuditoriums/:id', movieAudiController.deleteMovieAuditorium)
 
 
   // ---------------------------Theaters--------------------------
+  // Display
   app.get('/theaters', theaterController.displayTheaters)
+  // Insert
   app.post('/theaters', theaterController.insertTheater)
+  // Filter
   app.get('/theaters/search', theaterController.filterTheaters)
+  // Edit
+  // Delete
 
 
   // ----------------- Tickets -------------------
-  app.get('/tickets',ticketController.displayTickets)
-  app.post('/tickets',ticketController.insertTickets)
-  app.get('/tickets/search',ticketController.filterTickets)
+  app.get('/tickets', ticketController.displayTickets)
+  app.post('/tickets', ticketController.insertTickets)
+  app.get('/tickets/search', ticketController.filterTickets)
 
   // projectors
-  app.get('/projectorEquipments',projectorController.displayProjectors)
-  app.post('/projectorEquipments',projectorController.insertProjectors)
-  app.get('/projectorEquipments/search',projectorController.filterProjectors)
+  app.get('/projectorEquipments', projectorController.displayProjectors)
+  app.post('/projectorEquipments', projectorController.insertProjectors)
+  app.get('/projectorEquipments/search', projectorController.filterProjectors)
 
   //customers
-  app.get('/customers',customerController.displayCustomers)
-  app.post('/customers',customerController.insertCustomers)
-  app.get('/customers/search',customerController.filterCustomers)
+  app.get('/customers', customerController.displayCustomers)
+  app.post('/customers', customerController.insertCustomers)
+  app.get('/customers/search', customerController.filterCustomers)
 }

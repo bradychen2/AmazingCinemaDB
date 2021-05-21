@@ -68,9 +68,9 @@
           </a>
         </td>
         <td>
-          <a href="/movies/{{this.movie_id}}">
+          <form action="/movies/{{this.movie_id}}?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete</button>
-          </a>
+          </form>
         </td>
       </tr>
       {{/each}}
@@ -159,9 +159,9 @@
           </a>
         </td>
         <td>
-          <a href="/auditoriums/{{this.auditorium_id}}">
+          <form action="/auditoriums/{{this.auditorium_id}}?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete</button>
-          </a>
+          </form>
         </td>
       </tr>
       {{/each}}
@@ -243,9 +243,9 @@
           </a>
         </td>
         <td>
-          <a href="/moviesAuditoriums/{{this.movie_auditorium_id}}">
+          <form action="/moviesAuditoriums/{{this.movie_auditorium_id}}?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete</button>
-          </a>
+          </form>
         </td>
       </tr>
       {{/each}}

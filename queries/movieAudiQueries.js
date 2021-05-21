@@ -339,6 +339,49 @@ const queries = {
       });
     });
   },
+
+  deleteMovie: (res, mysql, movie_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Movies WHERE movie_id = ?",
+        movie_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(results);
+        });
+    });
+  },
+
+  deleteAuditorium: (res, mysql, auditorium_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Auditoriums WHERE auditorium_id = ?",
+        auditorium_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(results);
+        });
+    });
+  },
+
+  deleteMovieAuditorium: (res, mysql, movie_auditorium_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Movies_Auditoriums WHERE movie_auditorium_id = ?",
+        movie_auditorium_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(results);
+        });
+    });
+  },
+
 };
 
 module.exports = queries;
