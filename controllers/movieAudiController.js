@@ -71,7 +71,6 @@ const movieAudiController = {
       context.theaters = await theaterQueries.getTheaters(res, mysql)
       context.projectors = await projectorQueries.getProjectors(res, mysql)
 
-      console.log(context.projectors)
       return res.render('editAuditorium', context)
     } catch (err) {
       console.log(err)
@@ -89,6 +88,59 @@ const movieAudiController = {
       context.auditoriums = await maQueries.getAuditoriums(res, mysql)
 
       return res.render('editMovieAuditorium', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  editMovie: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.movieName,
+      req.body.releaseDate,
+      req.body.outOfTheaterDate,
+      req.body.rating,
+      req.params.id
+    ]
+
+    try {
+      await maQueries.updateMovie(res, mysql, updateInfo)
+      return res.redirect('/movies')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  editAuditorium: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.auditoriumName,
+      req.body.seats,
+      req.body.theater_id,
+      req.body.projector_equipment_id,
+      req.params.id
+    ]
+
+    try {
+      await maQueries.updateAuditorium(res, mysql, updateInfo)
+      return res.redirect('/movies')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  editMovieAuditorium: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.movie_id,
+      req.body.auditorium_id,
+      req.body.timeSlot,
+      req.params.id
+    ]
+
+    try {
+      await maQueries.updateMovieAuditorium(res, mysql, updateInfo)
+      return res.redirect('/movies')
     } catch (err) {
       console.log(err)
     }

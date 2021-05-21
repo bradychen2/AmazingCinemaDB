@@ -24,6 +24,9 @@ module.exports = (app) => {
   app.get('/auditoriums/search', movieAudiController.filterAuditoriums)
   app.get('/moviesAuditoriums/search', movieAudiController.filterMoviesAuditoriums)
   // Edit
+  app.put('/movies/:id', movieAudiController.editMovie)
+  app.put('/auditoriums/:id', movieAudiController.editAuditorium)
+  app.put('/moviesAuditoriums/:id', movieAudiController.editMovieAuditorium)
 
 
   // ---------------------------Theaters--------------------------
@@ -33,17 +36,17 @@ module.exports = (app) => {
 
 
   // ----------------- Tickets -------------------
-  app.get('/tickets',ticketController.displayTickets)
-  app.post('/tickets',ticketController.insertTickets)
-  app.get('/tickets/search',ticketController.filterTickets)
+  app.get('/tickets', ticketController.displayTickets)
+  app.post('/tickets', ticketController.insertTickets)
+  app.get('/tickets/search', ticketController.filterTickets)
 
   // projectors
-  app.get('/projectorEquipments',projectorController.displayProjectors)
-  app.post('/projectorEquipments',projectorController.insertProjectors)
-  app.get('/projectorEquipments/search',projectorController.filterProjectors)
+  app.get('/projectorEquipments', projectorController.displayProjectors)
+  app.post('/projectorEquipments', projectorController.insertProjectors)
+  app.get('/projectorEquipments/search', projectorController.filterProjectors)
 
   //customers
-  app.get('/customers',customerController.displayCustomers)
-  app.post('/customers',customerController.insertCustomers)
-  app.get('/customers/search',customerController.filterCustomers)
+  app.get('/customers', customerController.displayCustomers)
+  app.post('/customers', customerController.insertCustomers)
+  app.get('/customers/search', customerController.filterCustomers)
 }

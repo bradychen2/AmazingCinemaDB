@@ -32,7 +32,6 @@ const queries = {
             res.write(JSON.stringify(error))
             res.end()
           }
-          console.log(results)
           resolve(results[0])
         }
       )
@@ -79,7 +78,6 @@ const queries = {
           if (error) {
             reject(error)
           }
-          console.log(results)
           resolve(results[0])
         }
       )
@@ -323,8 +321,7 @@ const queries = {
             res.end();
           }
           resolve(results);
-        }
-      );
+        });
     });
   },
 
@@ -332,12 +329,67 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query("", searchKeyword, (error, results, fields) => {
         if (error) {
-          res.write(JSON.stringify(error));
-          res.end();
+          reject(error)
         }
         resolve(results);
       });
     });
+  },
+
+  updateMovie: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "UPDATE Movies \
+          SET name = ?, \
+              release_date = ?, \
+              out_of_theater_date = ?, \
+              rating = ? \
+          WHERE movie_id = ?",
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  },
+
+  updateAuditorium: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "UPDATE Auditoriums \
+          SET name = ?, \
+              number_of_seats = ?, \
+              theater_id = ?, \
+              projector_equipment_id = ? \
+          WHERE auditorium_id = ?",
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  },
+
+  updateMovieAuditorium: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "UPDATE Movies_Auditoriums \
+          SET movie_id = ?, \
+              auditorium_id = ?, \
+              time_slot = ? \
+          WHERE movie_auditorium_id = ?;",
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
   },
 };
 
