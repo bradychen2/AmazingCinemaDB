@@ -17,7 +17,11 @@
         <label for="theater" class="form-label mx-2">Theater</label>
         <select id="theater" class="form-select form-control mx-2" name="theater_id">
           {{#each theaters}}
+          {{#if_eq this.theater_id ../auditorium.theater_id}}
+          <option value={{this.theater_id}} selected>{{this.name}}</option>
+          {{else}}
           <option value={{this.theater_id}}>{{this.name}}</option>
+          {{/if_eq}}
           {{/each}}
         </select>
       </div>
@@ -25,7 +29,11 @@
         <label for="projector" class="form-label mx-2">Projector</label>
         <select id="projector" class="form-select form-control mx-2" name="projector_equipment_id">
           {{#each projectors}}
+          {{#if_eq this.projector_equipment_id ../auditorium.projector_equipment_id}}
+          <option value={{this.projector_equipment_id}} selected>{{this.type}}</option>
+          {{else}}
           <option value={{this.projector_equipment_id}}>{{this.type}}</option>
+          {{/if_eq}}
           {{/each}}
         </select>
       </div>

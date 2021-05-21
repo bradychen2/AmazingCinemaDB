@@ -1,6 +1,6 @@
 const Handlebars = require('handlebars')
 
-Handlebars.registerHelper('formatDate', (dayTime) => {
+Handlebars.registerHelper('formatDate', function (dayTime) {
   // Need transform format when retrieve from SQL
   let recordDate = new Date(dayTime)
   let year = recordDate.getFullYear()
@@ -13,7 +13,7 @@ Handlebars.registerHelper('formatDate', (dayTime) => {
   return year + '-' + month + '-' + date
 })
 
-Handlebars.registerHelper('formatDateTime', (dayTime) => {
+Handlebars.registerHelper('formatDateTime', function (dayTime) {
   let recordDate = new Date(dayTime)
   let year = recordDate.getFullYear()
   let month = recordDate.getMonth() + 1
@@ -27,4 +27,13 @@ Handlebars.registerHelper('formatDateTime', (dayTime) => {
   if (minute < 10) { minute = '0' + minute }
 
   return year + '-' + month + '-' + date + ' ' + hour + ':' + minute
+})
+
+// Only works by declaring with 'function' keyword
+Handlebars.registerHelper('if_eq', function (inputId, fkId, opts) {
+  if (inputId === fkId) {
+    return opts.fn(this)
+  } else {
+    return opts.inverse(this)
+  }
 })

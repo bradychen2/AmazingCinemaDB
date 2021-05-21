@@ -10,12 +10,13 @@
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="release-date" class="form-label mx-2">release date</label>
-        <input id="release-date" type="date" class="form-control" name="releaseDate" value={{movie.release_date}}>
+        <input id="release-date" type="date" class="form-control" name="releaseDate" value={{formatDate
+          movie.release_date}}>
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="out-of-theater-date" class="form-label mx-2">out of theater date</label>
-        <input id="out-of-theater-date" type="date" class="form-control" name="outOfTheaterDate"
-          value={{movie.out_of_theater_date}}>
+        <input id="out-of-theater-date" type="date" class="form-control" name="outOfTheaterDate" value={{formatDate
+          movie.out_of_theater_date}}>
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="rating" class="form-label mx-2">rating</label>

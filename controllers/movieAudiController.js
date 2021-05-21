@@ -71,6 +71,7 @@ const movieAudiController = {
       context.theaters = await theaterQueries.getTheaters(res, mysql)
       context.projectors = await projectorQueries.getProjectors(res, mysql)
 
+      console.log(context.projectors)
       return res.render('editAuditorium', context)
     } catch (err) {
       console.log(err)

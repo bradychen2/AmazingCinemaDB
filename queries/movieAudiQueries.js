@@ -65,9 +65,11 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         `SELECT auditorium_id, \
-              auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+              Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
+              Theaters.theater_id, \
               Theaters.name AS theater_name, \
-              projector_equipments.type AS projector_equipment_type \
+              Projector_equipments.projector_equipment_id, \
+              Projector_equipments.type AS projector_equipment_type \
         FROM Auditoriums \
         INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id \
         INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id \
@@ -109,7 +111,9 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         `SELECT Movies_Auditoriums.movie_auditorium_id, \
+                Movies.movie_id, \
               	Movies.name AS movies_name, \
+                Auditoriums.auditorium_id, \
                 Auditoriums.name AS auditoriums_name, time_slot \
           FROM Movies_Auditoriums \
           INNER JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
