@@ -27,12 +27,21 @@ module.exports = (app) => {
   app.put('/movies/:id', movieAudiController.editMovie)
   app.put('/auditoriums/:id', movieAudiController.editAuditorium)
   app.put('/moviesAuditoriums/:id', movieAudiController.editMovieAuditorium)
+  // Delete
+  app.delete('/movies/:id', movieAudiController.deleteMovie)
+  app.delete('/auditoriums/:id', movieAudiController.deleteAuditorium)
+  app.delete('/moviesAuditoriums/:id', movieAudiController.deleteMovieAuditorium)
 
 
   // ---------------------------Theaters--------------------------
+  // Display
   app.get('/theaters', theaterController.displayTheaters)
+  // Insert
   app.post('/theaters', theaterController.insertTheater)
+  // Filter
   app.get('/theaters/search', theaterController.filterTheaters)
+  // Edit
+  // Delete
 
 
   // ----------------- Tickets -------------------
