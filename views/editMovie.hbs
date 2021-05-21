@@ -21,8 +21,13 @@
         <label for="rating" class="form-label mx-2">rating</label>
         <input id="rating" type="text" class="form-control" name="rating" value={{movie.rating}} placeholder="PG">
       </div>
-      <div>
-        <input class="btn btn-primary" type="submit" value="Update">
+      <div class="d-flex">
+        <div>
+          <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+        <div class="mx-3">
+          <a href="/movies" class="btn btn-secondary">Cancel</a>
+        </div>
       </div>
     </div>
   </form>

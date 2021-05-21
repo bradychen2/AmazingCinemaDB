@@ -23,8 +23,13 @@
         <label for="time-slot" class="form-label mx-2">time slot</label>
         <input id="time-slot" type="time" class="form-control" name="timeSlot" value="{{movieAuditorium.time_slot}}">
       </div>
-      <div>
-        <input class="btn btn-primary" type="submit" value="Update">
+      <div class="d-flex">
+        <div>
+          <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+        <div class="mx-3">
+          <a href="/movies" class="btn btn-secondary">Cancel</a>
+        </div>
       </div>
     </div>
   </form>
