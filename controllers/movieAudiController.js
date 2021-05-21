@@ -14,28 +14,28 @@ const movieAudiController = {
       context.theaters = await theaterQueries.getTheaters(res, mysql)
       context.projectors = await projectorQueries.getProjectors(res, mysql)
 
-      req.session.moviesList = []
-      req.session.auditoriumsList = []
-      req.session.theatersList = []
-      req.session.projectorsList = []
+      const lists = ['moviesList', 'auditoriumsList', 'theatersList', 'projectorsList']
+      for (let list of lists) {
+        req.session[list] = []
+      }
 
       context.movies.forEach(movie => {
         const { movie_id, name } = movie
-        req.session.moviesList.push({ movie_id, name })
+        req.session['moviesList'].push({ movie_id, name })
       })
 
       context.auditoriums.forEach(auditorium => {
         const { auditorium_id, auditorium_name } = auditorium
-        req.session.auditoriumsList.push({ auditorium_id, auditorium_name })
+        req.session['auditoriumsList'].push({ auditorium_id, auditorium_name })
       })
 
       context.theaters.forEach(theater => {
         const { theater_id, name } = theater
-        req.session.theatersList.push({ theater_id, name })
+        req.session['theatersList'].push({ theater_id, name })
       })
       context.projectors.forEach(projector => {
         const { projector_equipment_id, type } = projector
-        req.session.projectorsList.push({ projector_equipment_id, type })
+        req.session['projectorsList'].push({ projector_equipment_id, type })
       })
 
       for (let prop in req.session) {
