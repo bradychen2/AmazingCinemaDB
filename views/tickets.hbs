@@ -36,7 +36,7 @@
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" name="searchTicBy">
-          <option >Search By</option>
+          <option>Search By</option>
           <option value="movieName">movies.name</option>
           <option value="auditoriumName">auditoriums.name</option>
           <option value="customerName">customers.name</option>
@@ -70,7 +70,7 @@
         <td>{{auditoriums_name}}</td>
         <td>{{customers_name}}</td>
         <td>{{seat}}</td>
-        <td>{{time}}</td>
+        <td>{{formatDateTime time}}</td>
         <td>{{price}}</td>
         <td><button class="btn btn-secondary">Edit</button></td>
         <td><button class="btn btn-danger">Delete</button></td>

@@ -59,8 +59,8 @@
       <tr>
         <th scope="row">{{this.movie_id}}</th>
         <td>{{this.name}}</td>
-        <td>{{this.release_date}}</td>
-        <td>{{this.out_of_theater_date}}</td>
+        <td>{{formatDate this.release_date}}</td>
+        <td>{{formatDate this.out_of_theater_date}}</td>
         <td>{{this.rating}}</td>
         <td><button class="btn btn-secondary" href="/movies/:{{this.movie_id}}">Edit</button></td>
         <td><button class="btn btn-danger" href="/movies/:{{this.movie_id}}">Delete</button></td>

@@ -9,6 +9,7 @@ var app = express()
 const port = 3000
 
 app.engine('hbs', exphbs({
+  helpers: require('./helpers/handlebarsHelpers'),
   extname: 'hbs',
   defaultLayout: 'main'
 }))
