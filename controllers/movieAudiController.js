@@ -14,6 +14,34 @@ const movieAudiController = {
       context.theaters = await theaterQueries.getTheaters(res, mysql)
       context.projectors = await projectorQueries.getProjectors(res, mysql)
 
+      req.session.moviesList = []
+      req.session.auditoriumsList = []
+      req.session.theatersList = []
+      req.session.projectorsList = []
+
+      context.movies.forEach(movie => {
+        const { movie_id, name } = movie
+        req.session.moviesList.push({ movie_id, name })
+      })
+
+      context.auditoriums.forEach(auditorium => {
+        const { auditorium_id, auditorium_name } = auditorium
+        req.session.auditoriumsList.push({ auditorium_id, auditorium_name })
+      })
+
+      context.theaters.forEach(theater => {
+        const { theater_id, name } = theater
+        req.session.theatersList.push({ theater_id, name })
+      })
+      context.projectors.forEach(projector => {
+        const { projector_equipment_id, type } = projector
+        req.session.projectorsList.push({ projector_equipment_id, type })
+      })
+
+      for (let prop in req.session) {
+        if (prop !== 'cookie') { context[prop] = req.session[prop] }
+      }
+
       return res.render('moviesAuditoriums', context)
     } catch (err) {
       console.log(err)
@@ -87,6 +115,9 @@ const movieAudiController = {
       }
       context.auditoriums = await maQueries.getAuditoriums(res, mysql)
       context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
+      for (let prop in req.session) {
+        if (prop !== 'cookie') { context[prop] = req.session[prop] }
+      }
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {
@@ -117,6 +148,9 @@ const movieAudiController = {
 
       context.movies = await maQueries.getMovies(res, mysql)
       context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
+      for (let prop in req.session) {
+        if (prop !== 'cookie') { context[prop] = req.session[prop] }
+      }
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {
@@ -147,6 +181,9 @@ const movieAudiController = {
 
       context.movies = await maQueries.getMovies(res, mysql)
       context.auditoriums = await maQueries.getAuditoriums(res, mysql)
+      for (let prop in req.session) {
+        if (prop !== 'cookie') { context[prop] = req.session[prop] }
+      }
 
       return res.render('moviesAuditoriums', context)
     } catch (err) {

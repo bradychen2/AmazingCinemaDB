@@ -88,7 +88,7 @@
       <div class="input-group mb-3 align-items-center">
         <label for="theater-id" class="form-label mx-2">theater</label>
         <select id="theater-id" class="form-select form-control mx-2" name="theaterId">
-          {{#each theaters}}
+          {{#each theatersList}}
           <option value={{this.theater_id}}>{{this.name}}</option>
           {{/each}}
         </select>
@@ -96,7 +96,7 @@
       <div class="input-group mb-3 align-items-center">
         <label for="projector-id" class="form-label mx-2">projector</label>
         <select id="projector-id" class="form-select form-control mx-2" name="projectorId">
-          {{#each projectors}}
+          {{#each projectorsList}}
           <option value={{this.projector_equipment_id}}>{{this.type}}</option>
           {{/each}}
         </select>
@@ -162,7 +162,7 @@
       <div class="input-group mb-3 align-items-center">
         <label for="movie-id" class="form-label mx-2">movie</label>
         <select id="movie-id" class="form-select form-control mx-2" name="movieId">
-          {{#each movies}}
+          {{#each moviesList}}
           <option value={{this.movie_id}}>{{this.name}}</option>
           {{/each}}
         </select>
@@ -170,7 +170,7 @@
       <div class="input-group mb-3 align-items-center">
         <label for="auditorium-id" class="form-label mx-2">auditorium</label>
         <select id="auditorium-id" class="form-select form-control mx-2" name="auditoriumId">
-          {{#each auditoriums}}
+          {{#each auditoriumsList}}
           <option value={{this.auditorium_id}}>{{this.auditorium_name}}</option>
           {{/each}}
         </select>

@@ -201,7 +201,7 @@ SELECT
 FROM
 	Theaters 
 WHERE
-	name = :theater_name_from_webpage;
+	LOWER(name) LIKE LOWER(:theater_name_from_webpage);
 
 -- Customers:
 -- filter the customer by its name
