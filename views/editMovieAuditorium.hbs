@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Movies Auditoriums</h2>
+  {{!-- Form --}}
+  <form class="row" action="/moviesAuditoriums/{{movieAuditorium.movie_auditorium_id}}?_method=PUT" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group mb-3 align-items-center">
+        <label for="movie" class="form-label mx-2">Movie</label>
+        <select id="movie" class="form-select form-control mx-2" name="movie_id">
+          {{#each movies}}
+          <option value={{this.movie_id}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="auditorium" class="form-label mx-2">Auditorium</label>
+        <select id="auditorium" class="form-select form-control mx-2" name="auditorium_id">
+          {{#each auditoriums}}
+          <option value={{this.auditorium_id}}>{{this.auditorium_name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="time-slot" class="form-label mx-2">time slot</label>
+        <input id="time-slot" type="time" class="form-control" name="timeSlot" value="{{movieAuditorium.time_slot}}">
+      </div>
+      <div class="d-flex">
+        <div>
+          <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+        <div class="mx-3">
+          <a href="/movies" class="btn btn-secondary">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

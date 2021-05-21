@@ -48,6 +48,51 @@ const movieAudiController = {
     }
   },
 
+  getEditMovie: async (req, res) => {
+    let context = {}
+    const movie_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.movie = await maQueries.getMovie(res, mysql, movie_id)
+      return res.render('editMovie', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  getEditAuditorium: async (req, res) => {
+    let context = {}
+    const auditorium_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.auditorium = await maQueries.getAuditorium(res, mysql, auditorium_id)
+      context.theaters = await theaterQueries.getTheaters(res, mysql)
+      context.projectors = await projectorQueries.getProjectors(res, mysql)
+
+      return res.render('editAuditorium', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  getEditMovieAuditorium: async (req, res) => {
+    let context = {}
+    const movie_auditorium_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.movieAuditorium = await maQueries.getMovieAuditorium(res, mysql, movie_auditorium_id)
+      context.movies = await maQueries.getMovies(res, mysql)
+      context.auditoriums = await maQueries.getAuditoriums(res, mysql)
+
+      return res.render('editMovieAuditorium', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
   insertMovie: async (req, res) => {
     const mysql = req.app.get('mysql')
     const inserts = [

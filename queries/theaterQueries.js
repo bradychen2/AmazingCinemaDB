@@ -9,8 +9,7 @@ const queries = {
           FROM Theaters \
           ORDER BY theater_id;", (error, results, fields) => {
         if (error) {
-          res.write(JSON.stringify(error))
-          res.end()
+          reject(error)
         }
         resolve(results)
       })

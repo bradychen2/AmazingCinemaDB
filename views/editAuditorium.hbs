@@ -1,0 +1,42 @@
+<div class="container my-2">
+  <h2>Auditoriums</h2>
+  {{!-- Form --}}
+  <form class="row" action="/auditoriums/{{auditorium.auditorium_id}}/?_method=PUT" method="POST">
+    <div class="col-md-6 col-sm-10">
+      <div class="input-group mb-3 align-items-center">
+        <label for="auditorium-name" class="form-label mx-2">name</label>
+        <input id="auditorium-name" type="text" class="form-control" name="auditoriumName"
+          value="{{auditorium.auditorium_name}}" placeholder="auditorium name">
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="number-of-seats" class="form-label mx-2">number of seats</label>
+        <input id="number-of-seats" type="number" class="form-control" name="seats" value={{auditorium.number_of_seats}}
+          placeholder="200">
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="theater" class="form-label mx-2">Theater</label>
+        <select id="theater" class="form-select form-control mx-2" name="theater_id">
+          {{#each theaters}}
+          <option value={{this.theater_id}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="projector" class="form-label mx-2">Projector</label>
+        <select id="projector" class="form-select form-control mx-2" name="projector_equipment_id">
+          {{#each projectors}}
+          <option value={{this.projector_equipment_id}}>{{this.type}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="d-flex">
+        <div class="">
+          <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+        <div class="mx-3">
+          <a href="/movies" class="btn btn-secondary">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

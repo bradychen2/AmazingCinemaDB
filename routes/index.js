@@ -12,6 +12,9 @@ module.exports = (app) => {
   // ---------------------Movies & Auditoriums---------------------
   // Display
   app.get('/movies', movieAudiController.displayMoviesAuditoriums)
+  app.get('/movies/edit/:id', movieAudiController.getEditMovie)
+  app.get('/auditoriums/edit/:id', movieAudiController.getEditAuditorium)
+  app.get('/moviesAuditoriums/edit/:id', movieAudiController.getEditMovieAuditorium)
   // Insert
   app.post('/movies', movieAudiController.insertMovie)
   app.post('/auditoriums', movieAudiController.insertAuditorium)
@@ -20,6 +23,8 @@ module.exports = (app) => {
   app.get('/movies/search', movieAudiController.filterMovies)
   app.get('/auditoriums/search', movieAudiController.filterAuditoriums)
   app.get('/moviesAuditoriums/search', movieAudiController.filterMoviesAuditoriums)
+  // Edit
+
 
   // ---------------------------Theaters--------------------------
   app.get('/theaters', theaterController.displayTheaters)
