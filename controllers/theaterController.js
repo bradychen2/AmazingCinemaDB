@@ -77,6 +77,18 @@ const theaterController = {
     } catch (err) {
       console.log(err)
     }
+  },
+
+  deleteTheater: async (req, res) => {
+    const theater_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      await queries.deleteTheater(res, mysql, theater_id)
+      res.redirect('/theaters')
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 

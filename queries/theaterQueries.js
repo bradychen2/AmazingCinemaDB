@@ -87,6 +87,20 @@ const queries = {
         })
     })
   },
+
+  deleteTheater: (res, mysql, theater_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Theaters WHERE theater_id = ?;",
+        theater_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  }
 }
 
 module.exports = queries

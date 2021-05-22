@@ -61,9 +61,9 @@ CREATE TABLE  `Auditoriums` (
     `theater_id` int NOT NULL,
     `projector_equipment_id` int NOT NULL,
     FOREIGN KEY (theater_id)
-    REFERENCES `Theaters` (theater_id),
+    REFERENCES `Theaters` (theater_id) ON DELETE CASCADE,
 	FOREIGN KEY (projector_equipment_id)
-    REFERENCES `Projector_Equipments` (projector_equipment_id)
+    REFERENCES `Projector_Equipments` (projector_equipment_id) ON DELETE CASCADE
 );
 
 INSERT INTO `Auditoriums` (`name`, `number_of_seats`, `theater_id`, `projector_equipment_id`) VALUES 
@@ -111,7 +111,7 @@ CREATE TABLE `Tickets` (
     FOREIGN KEY (customer_id)
     REFERENCES `Customers` (customer_id),
     FOREIGN KEY (projector_id)
-    REFERENCES `Projector_Equipments` (projector_equipment_id)
+    REFERENCES `Projector_Equipments` (projector_equipment_id) ON DELETE CASCADE
 );
 
 INSERT INTO `Tickets` (`seat`, `time`, `projector_id`, `movie_auditorium_id`, `customer_id`) VALUES 

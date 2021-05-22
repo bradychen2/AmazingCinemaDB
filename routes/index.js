@@ -44,19 +44,19 @@ module.exports = (app) => {
   // Edit
   app.put('/theaters/:id', theaterController.editTheater)
   // Delete
+  app.delete('/theaters/:id', theaterController.deleteTheater)
 
-
-  // ----------------- Tickets -------------------
+  // ----------------------------Tickets---------------------------
   app.get('/tickets', ticketController.displayTickets)
   app.post('/tickets', ticketController.insertTickets)
   app.get('/tickets/search', ticketController.filterTickets)
 
-  // projectors
+  // ---------------------------Projectors--------------------------
   app.get('/projectorEquipments', projectorController.displayProjectors)
   app.post('/projectorEquipments', projectorController.insertProjectors)
   app.get('/projectorEquipments/search', projectorController.filterProjectors)
 
-  //customers
+  // ----------------------------Customers---------------------------
   app.get('/customers', customerController.displayCustomers)
   app.post('/customers', customerController.insertCustomers)
   app.get('/customers/search', customerController.filterCustomers)
