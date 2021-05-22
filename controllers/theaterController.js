@@ -13,6 +13,19 @@ const theaterController = {
     }
   },
 
+  getEditTheater: async (req, res) => {
+    let context = {}
+    const theater_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.theater = await queries.getTheater(res, mysql, theater_id)
+      res.render('editTheater', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
   insertTheater: async (req, res) => {
     const mysql = req.app.get('mysql')
     const inserts = [
@@ -23,6 +36,24 @@ const theaterController = {
 
     try {
       await queries.createTheater(mysql, inserts)
+
+      return res.redirect('/theaters')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  editTheater: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.theaterName,
+      req.body.address,
+      req.body.phone,
+      req.params.id
+    ]
+
+    try {
+      await queries.updateTheater(res, mysql, updateInfo)
 
       return res.redirect('/theaters')
     } catch (err) {

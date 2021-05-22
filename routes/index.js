@@ -36,11 +36,13 @@ module.exports = (app) => {
   // ---------------------------Theaters--------------------------
   // Display
   app.get('/theaters', theaterController.displayTheaters)
+  app.get('/theaters/edit/:id', theaterController.getEditTheater)
   // Insert
   app.post('/theaters', theaterController.insertTheater)
   // Filter
   app.get('/theaters/search', theaterController.filterTheaters)
   // Edit
+  app.put('/theaters/:id', theaterController.editTheater)
   // Delete
 
 

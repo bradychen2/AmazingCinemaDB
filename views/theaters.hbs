@@ -5,7 +5,7 @@
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="name" class="form-label mx-2">name</label>
-        <input id="name" type="text" class="form-control" name="name">
+        <input id="name" type="text" class="form-control" name="name" placeholder="ex: name">
       </div>
 
       <div class="input-group mb-3 align-items-center">
@@ -14,7 +14,8 @@
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="phone" class="form-label mx-2">phone</label>
-        <input id="phone" type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <input id="phone" type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="ex: 111-222-3333">
       </div>
       <div>
         <input class="btn btn-primary " type="submit" value="Insert">
@@ -56,8 +57,16 @@
         <td>{{this.name}}</td>
         <td>{{this.address}}</td>
         <td>{{this.phone}}</td>
-        <td><button class="btn btn-secondary" href="/theaters/:{{this.theater_id}}">Edit</button></td>
-        <td><button class="btn btn-danger" href="/theaters/:{{this.theater_id}}">Delete</button></td>
+        <td>
+          <a href="/theaters/edit/{{this.theater_id}}">
+            <button class="btn btn-secondary">Edit</button>
+          </a>
+        </td>
+        <td>
+          <form action="/theaters/{{this.movie_auditorium_id}}?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </td>
       </tr>
       {{/each}}
     </tbody>
