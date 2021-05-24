@@ -1,3 +1,35 @@
+{{!-- Delete Modal --}}
+{{#each theaters}}
+<div class="modal fade" id="deleteTheater{{this.theater_id}}" tabindex="-1"
+  aria-labelledby="deleteTheater{{this.theater_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTheater{{this.theater_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+          <li>Theater Name: {{this.name}}</li>
+          <li>Address: {{this.address}}</li>
+          <li>Phone: {{this.phone}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/theaters/{{this.theater_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 <div class="container">
   <h2>Theaters</h2>
   {{!-- Form --}}
@@ -63,9 +95,8 @@
           </a>
         </td>
         <td>
-          <form action="/theaters/{{this.theater_id}}?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
-          </form>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteTheater{{this.theater_id}}">Delete</button>
         </td>
       </tr>
       {{/each}}

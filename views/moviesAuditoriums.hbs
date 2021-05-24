@@ -1,3 +1,99 @@
+{{!-- Delete Modal --}}
+{{#each movies}}
+<div class="modal fade" id="deleteMovie{{this.movie_id}}" tabindex="-1"
+  aria-labelledby="deleteMovie{{this.movie_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMovie{{this.movie_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+          <li>Movie Name: {{this.name}}</li>
+          <li>Release Date: {{formatDate this.release_date}}</li>
+          <li>Out of Theater Date: {{formatDate this.out_of_theater_date}}</li>
+          <li>Rating: {{this.rating}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/movies/{{this.movie_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+{{#each auditoriums}}
+<div class="modal fade" id="deleteAuditorium{{this.auditorium_id}}" tabindex="-1"
+  aria-labelledby="deleteAuditorium{{this.auditorium_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAuditorium{{this.auditorium_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+          <li>Auditorium Name: {{this.auditorium_name}}</li>
+          <li>Number of Seats: {{this.number_of_seats}}</li>
+          <li>Theater Name: {{this.theater_name}}</li>
+          <li>Projector Type: {{this.projector_equipment_type}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/auditoriums/{{this.auditorium_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+{{#each moviesAuditoriums}}
+<div class="modal fade" id="deleteMovieAuditorium{{this.movie_auditorium_id}}" tabindex="-1"
+  aria-labelledby="deleteMovieAuditorium{{this.movie_auditorium_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMovieAuditorium{{this.movie_auditorium_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+          <li>Movie Name: {{this.movie_name}}</li>
+          <li>Auditorium Name: {{this.auditorium_name}}</li>
+          <li>Time Slot: {{this.time_slot}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/moviesAuditoriums/{{this.movie_auditorium_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 {{!-- Movies Table --}}
 <div class="container">
   <h2>Movies</h2>
@@ -68,9 +164,8 @@
           </a>
         </td>
         <td>
-          <form action="/movies/{{this.movie_id}}?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
-          </form>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteMovie{{this.movie_id}}">Delete</button>
         </td>
       </tr>
       {{/each}}
@@ -159,9 +254,8 @@
           </a>
         </td>
         <td>
-          <form action="/auditoriums/{{this.auditorium_id}}?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
-          </form>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteAuditorium{{this.auditorium_id}}">Delete</button>
         </td>
       </tr>
       {{/each}}
@@ -243,9 +337,8 @@
           </a>
         </td>
         <td>
-          <form action="/moviesAuditoriums/{{this.movie_auditorium_id}}?_method=DELETE" method="POST">
-            <button class="btn btn-danger">Delete</button>
-          </form>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteMovieAuditorium{{this.movie_auditorium_id}}">Delete</button>
         </td>
       </tr>
       {{/each}}
