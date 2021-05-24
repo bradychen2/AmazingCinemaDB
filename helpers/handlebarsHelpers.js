@@ -37,3 +37,11 @@ Handlebars.registerHelper('if_eq', function (inputId, fkId, opts) {
     return opts.inverse(this)
   }
 })
+
+Handlebars.registerHelper('includeExclude', function (entity1, entity2, opts) {
+  if (entity1 && !entity2) {
+    return opts.fn(this)
+  } else {
+    return opts.inverse(this)
+  }
+})
