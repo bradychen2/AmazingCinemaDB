@@ -1,27 +1,27 @@
 <div class="container my-2">
   <h2>Tickets</h2>
   {{!-- Form --}}
-  <form class="row" action="/tickets/{{tickets.ticket_id}}?_method=PUT" method="POST">
+  <form class="row" action="/tickets/{{ticket.ticket_id}}?_method=PUT" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="movie-auditorium-id" class="form-label mx-2">movie auditorium id</label>
-        <input id="movie-auditorium-id" type="number" class="form-control" name="movieId" value="{{tickets.movie_auditorium_id}}">
+        <input id="movie-auditorium-id" type="number" class="form-control" name="movieId" value="{{ticket.movie_auditorium_id}}">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="customer-id" class="form-label mx-2">customer id</label>
-        <input id="customer-id" type="number" class="form-control" name="customerId" value="{{tickets.customer_id}}">
+        <input id="customer-id" type="number" class="form-control" name="customerId" value="{{ticket.customer_id}}">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="seat" class="form-label mx-2">seat</label>
-        <input id="seat" type="text" class="form-control" name="seat" placeholder="A17" value="{{tickets.seat}}">
+        <input id="seat" type="text" class="form-control" name="seat" placeholder="A17" value="{{ticket.seat}}">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="time" class="form-label mx-2">time</label>
-        <input id="time" type="datetime-local" class="form-control" name="time" value="{{tickets.time}}">
+        <input id="time" type="datetime-local" class="form-control" name="time" value="{{ticket.time}}">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="price" class="form-label mx-2">price</label>
-        <input id="price" type="number" class="form-control" name="price" value="{{tickets.price}}">
+        <input id="price" type="number" class="form-control" name="price" value="{{ticket.price}}">
       </div>
        <div class="d-flex">
         <div>

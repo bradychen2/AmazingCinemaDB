@@ -93,7 +93,7 @@ const ticketController = {
     const mysql = req.app.get('mysql')
 
     try {
-      context.ticket = await queries.getTickets(res, mysql, ticket_id)
+      context.ticket = await queries.getTicket(res, mysql, ticket_id)
       res.render('editTicket', context)
     } catch (err) {
       console.log(err)

@@ -51,7 +51,19 @@ const sql_search3 =
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
     WHERE LOWER(Customers.name) LIKE LOWER(?) ORDER BY Tickets.ticket_id;"
 
-
+    const sql_get =
+    "SELECT DISTINCT ticket_id, \
+                  Movies.name AS movies_name, \
+                  Auditoriums.name AS auditoriums_name, \
+                  Customers.name AS customers_name, \
+                  seat, time, price \
+      FROM Tickets \
+      LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+      LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
+      LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
+      LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
+      Where ticket_id=? \
+      ORDER BY Tickets.ticket_id;";
 const updatesql = "UPDATE Tickets SET movie_auditorium_id = ?, customer_id = ?, seat = ?, time =?, price=? WHERE ticket_id= ?;"
 const queries = {
   getTickets: (res, mysql) => {
@@ -144,6 +156,16 @@ const queries = {
           resolve()
         })
     })
+  },
+  getTicket: (res, mysql,ticket_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(sql_get,ticket_id, function (error, results, fields) {
+        if (error) {
+          reject(error)
+        }
+        resolve(results[0])
+      });
+    });
   }
 };
 
