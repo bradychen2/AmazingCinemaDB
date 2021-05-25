@@ -64,6 +64,19 @@ const queries = {
           resolve()
         })
     })
+  },
+  getProjector: (res, mysql, projector_equipment_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "SELECT projector_equipment_id, type FROM Projector_Equipments Where projector_equipment_id=?;",
+        projector_equipment_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(results[0])
+        })
+    })
   }
 
 

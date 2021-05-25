@@ -77,13 +77,26 @@ const customerController = {
     const updateInfo = [
       req.body.name,
       req.body.email,
-      req.body.phone
+      req.body.phone,
+      req.params.id
     ]
 
     try {
       await queries.updateCus(res, mysql, updateInfo)
       
       return res.redirect('/customers')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  getEditCus: async (req, res) => {
+    let context = {}
+    const customer_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.customer = await queries.getCus(res, mysql, customer_id)
+      res.render('editCustomer', context)
     } catch (err) {
       console.log(err)
     }

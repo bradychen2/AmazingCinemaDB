@@ -61,7 +61,8 @@ const projectorController = {
   editPro: async (req, res) => {
     const mysql = req.app.get('mysql')
     const updateInfo = [
-      req.body.type
+      req.body.type,
+      req.params.id
     ]
 
     try {
@@ -78,7 +79,7 @@ const projectorController = {
     const mysql = req.app.get('mysql')
 
     try {
-      context.projectors = await queries.getProjectors(res, mysql, projector_equipment_id)
+      context.projector = await queries.getProjector(res, mysql, projector_equipment_id)
       res.render('editProjector', context)
     } catch (err) {
       console.log(err)

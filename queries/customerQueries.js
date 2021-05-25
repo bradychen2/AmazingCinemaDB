@@ -68,6 +68,19 @@ const queries = {
           resolve()
         })
     })
+  },
+  getCus: (res, mysql, customer_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "SELECT customer_id, name, email, phone FROM Customers Where customer_id=?",
+        customer_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(results[0])
+        })
+    })
   }
 
 }
