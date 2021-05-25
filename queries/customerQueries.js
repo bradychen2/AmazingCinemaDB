@@ -38,6 +38,36 @@ const queries = {
         }
       );
     });
+  },
+  deleteCustomer: (res, mysql, customer_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM customers WHERE customer_id = ?;",
+        customer_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  },
+  updateCus: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "UPDATE Customers \
+          SET	name = ?, \
+              email = ?, \
+              phone = ? \
+          WHERE customer_id = ?;",
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
   }
 
 }

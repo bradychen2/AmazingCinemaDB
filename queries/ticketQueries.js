@@ -52,7 +52,7 @@ const sql_search3 =
     WHERE LOWER(Customers.name) LIKE LOWER(?) ORDER BY Tickets.ticket_id;"
 
 
-
+const updatesql = "UPDATE Tickets SET movie_auditorium_id = ?, customer_id = ?, seat = ?, time =?, price=? WHERE ticket_id= ?;"
 const queries = {
   getTickets: (res, mysql) => {
     return new Promise((resolve, reject) => {
@@ -118,6 +118,32 @@ const queries = {
         }
       );
     });
+  },
+  deleteTickets: (res, mysql, ticket_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Tickets WHERE ticket_id = ?;",
+        ticket_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  },
+  updateTic: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        updatesql,
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
   }
 };
 

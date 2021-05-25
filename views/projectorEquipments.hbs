@@ -1,3 +1,35 @@
+{{!-- Delete Modal --}}
+{{#each projector}}
+<div class="modal fade" id="deleteProjectors{{this.projector_equipment_id}}" tabindex="-1"
+  aria-labelledby="deleteProjectors{{this.projector_equipment_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteProjectors{{this.projector_equipment_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+    
+        <li >projector_equipment_id: {{projector_equipment_id}}</li>
+        <li >type: {{type}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/projectorEquipments/{{this.projector_equipment_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 <div class="container">
   <h2>Projector Equipments</h2>
   {{!-- Form --}}
@@ -44,8 +76,15 @@
       <tr>
         <th scope="row">{{projector_equipment_id}}</th>
         <td>{{type}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td>
+          <a href="/projectorEquipments/edit/{{this.projector_equipment_id}}">
+            <button class="btn btn-secondary">Edit</button>
+          </a>
+        </td>
+        <td>
+        <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteProjectors{{projector_equipment_id}}">Delete</button>
+        </td>
       </tr>
       {{/each}}
     </tbody>

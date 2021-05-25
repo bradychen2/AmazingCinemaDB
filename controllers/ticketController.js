@@ -57,6 +57,47 @@ const ticketController = {
     } catch (err) {
       console.log(err)
     }
+  },
+  deleteTicket: async (req, res) => {
+    const ticket_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      await queries.deleteTickets(res, mysql, ticket_id)
+      res.redirect('/tickets')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  editTicket: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.movieId,
+      req.body.customerId,
+      req.body.seat,
+      req.body.time,
+      req.body.price
+    ]
+    try {
+      await queries.updateTic(res, mysql, updateInfo)
+
+      return res.redirect('/tickets')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  getEditTicket: async (req, res) => {
+    let context = {}
+    const ticket_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.ticket = await queries.getTickets(res, mysql, ticket_id)
+      res.render('editTicket', context)
+    } catch (err) {
+      console.log(err)
+    }
   }
   }
 

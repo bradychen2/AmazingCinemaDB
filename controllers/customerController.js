@@ -47,6 +47,46 @@ const customerController = {
     } catch (err) {
       console.log(err)
     }
+  },
+  deleteCus: async (req, res) => {
+    const customer_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      await queries.deleteCustomer(res, mysql, customer_id)
+      res.redirect('/customers')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  getEditCus: async (req, res) => {
+    let context = {}
+    const customer_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.customers = await queries.getCustomers(res, mysql, customer_id)
+      res.render('editCustomer', context)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  editCus: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.name,
+      req.body.email,
+      req.body.phone
+    ]
+
+    try {
+      await queries.updateCus(res, mysql, updateInfo)
+      
+      return res.redirect('/customers')
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 

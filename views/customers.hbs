@@ -1,3 +1,36 @@
+
+{{#each customers}}
+<div class="modal fade" id="deleteCus{{this.customer_id}}" tabindex="-1"
+  aria-labelledby="deleteCus{{this.customer_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCus{{this.customer_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+        <li>customer_id: {{customer_id}}</li>
+        <li>name: {{name}}</li>
+        <li>email: {{email}}</li>
+        <li>phone: {{phone}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/customers/{{this.customer_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 <div class="container">
   <h2>Customers</h2>
   {{!-- Form --}}
@@ -56,8 +89,14 @@
         <td>{{name}}</td>
         <td>{{email}}</td>
         <td>{{phone}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td>
+          <a href="/customers/edit/{{this.customer_id}}">
+            <button class="btn btn-secondary">Edit</button>
+          </a>
+        </td>
+        <td>
+        <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteCus{{customer_id}}">Delete</button></td>
       </tr>
       {{/each}}
     </tbody>

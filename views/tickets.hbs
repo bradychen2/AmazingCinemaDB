@@ -1,3 +1,39 @@
+{{!-- Delete Modal --}}
+{{#each tickets}}
+<div class="modal fade" id="deleteTickets{{this.ticket_id}}" tabindex="-1"
+  aria-labelledby="deleteTickets{{this.theater_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTickets{{this.theater_id}}Label">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        <div>All information and related data will be <strong>lost</strong> after deletion.</div>
+        <div><strong>Are you sure to delete the data?</strong></div>
+        </p>
+        <ul>
+        <li>ticket_id: {{ticket_id}}</li>
+        <li>movies_name: {{movies_name}}</li>
+        <li>auditoriums_name: {{auditoriums_name}}</li>
+        <li>customers_name: {{customers_name}}</li>
+        <li>seat: {{seat}}</li>
+        <li>formatDateTime time: {{formatDateTime time}}</li>
+        <li>price: {{price}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/tickets/{{this.ticket_id}}?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 <div class="container">
   <h2>Tickets</h2>
   {{!-- Form --}}
@@ -72,8 +108,12 @@
         <td>{{seat}}</td>
         <td>{{formatDateTime time}}</td>
         <td>{{price}}</td>
-        <td><button class="btn btn-secondary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><a href="/tickets/edit/{{ticket_id}}">
+            <button class="btn btn-secondary">Edit</button>
+          </a></td>
+        <td>
+        <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteTickets{{ticket_id}}">Delete</button></td>
       </tr>
       {{/each}}
     </tbody>

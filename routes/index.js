@@ -50,14 +50,27 @@ module.exports = (app) => {
   app.get('/tickets', ticketController.displayTickets)
   app.post('/tickets', ticketController.insertTickets)
   app.get('/tickets/search', ticketController.filterTickets)
+  app.delete('/tickets/:id', ticketController.deleteTicket)
+  app.get('/tickets/edit/:id', ticketController.getEditTicket)
+  app.put('/tickets/:id', ticketController.editTicket)
+
 
   // ---------------------------Projectors--------------------------
   app.get('/projectorEquipments', projectorController.displayProjectors)
   app.post('/projectorEquipments', projectorController.insertProjectors)
   app.get('/projectorEquipments/search', projectorController.filterProjectors)
+  app.delete('/projectorEquipments/:id', projectorController.deleteProjectors)
+  app.get('/projectorEquipments/edit/:id', projectorController.getEditPro)
+  app.put('/projectorEquipments/:id', projectorController.editPro)
+
 
   // ----------------------------Customers---------------------------
   app.get('/customers', customerController.displayCustomers)
   app.post('/customers', customerController.insertCustomers)
   app.get('/customers/search', customerController.filterCustomers)
+  app.delete('/customers/:id', customerController.deleteCus)
+
+  app.get('/customers/edit/:id', customerController.getEditCus)
+  app.put('/customers/:id', customerController.editCus)
+
 }

@@ -46,6 +46,43 @@ const projectorController = {
     } catch (err) {
       console.log(err)
     }
+  },
+  deleteProjectors: async (req, res) => {
+    const projector_equipment_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      await queries.deleteProjector(res, mysql, projector_equipment_id)
+      res.redirect('/projectorEquipments')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  editPro: async (req, res) => {
+    const mysql = req.app.get('mysql')
+    const updateInfo = [
+      req.body.type
+    ]
+
+    try {
+      await queries.updateProjec(res, mysql, updateInfo)
+
+      return res.redirect('/projectorEquipments')
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  getEditPro: async (req, res) => {
+    let context = {}
+    const projector_equipment_id = req.params.id
+    const mysql = req.app.get('mysql')
+
+    try {
+      context.projectors = await queries.getProjectors(res, mysql, projector_equipment_id)
+      res.render('editProjector', context)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
 

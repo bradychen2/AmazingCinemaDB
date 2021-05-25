@@ -4,7 +4,7 @@ const sql_insert =
   "INSERT INTO Projector_Equipments(type) VALUES(?);";
 const sql_search =
   "SELECT projector_equipment_id, type FROM Projector_Equipments WHERE LOWER(type) LIKE LOWER(?);"
-
+const update = "UPDATE Projector_Equipments SET type =? WHERE projector_equipment_id =?;"
 
 const queries = {
   getProjectors: (res, mysql) => {
@@ -39,7 +39,32 @@ const queries = {
           resolve(results)
         })
     })
-  })
+  }),
+  deleteProjector: (res, mysql, projector_equipment_id) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(
+        "DELETE FROM Projector_Equipments WHERE projector_equipment_id = ?;",
+        projector_equipment_id,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  },
+  updateProjec: (res, mysql, updateInfo) => {
+    return new Promise((resolve, reject) => {
+      mysql.pool.query(update,
+        updateInfo,
+        (error, results, fields) => {
+          if (error) {
+            reject(error)
+          }
+          resolve()
+        })
+    })
+  }
 
 
 };
