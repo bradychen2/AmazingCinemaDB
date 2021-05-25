@@ -81,7 +81,7 @@ const ticketController = {
     ]
     try {
       await queries.updateTic(res, mysql, updateInfo)
-
+      console.log(updateInfo)
       return res.redirect('/tickets')
     } catch (err) {
       console.log(err)

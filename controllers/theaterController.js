@@ -54,7 +54,7 @@ const theaterController = {
 
     try {
       await queries.updateTheater(res, mysql, updateInfo)
-
+      console.log(updateInfo)
       return res.redirect('/theaters')
     } catch (err) {
       console.log(err)
