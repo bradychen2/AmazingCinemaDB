@@ -77,7 +77,7 @@ const ticketController = {
       req.body.seat,
       req.body.time,
       req.body.price,
-      req.body.id
+      req.params.id
     ]
     try {
       await queries.updateTic(res, mysql, updateInfo)
