@@ -14,13 +14,13 @@
         <div><strong>Are you sure to delete the data?</strong></div>
         </p>
         <ul>
-        <li>ticket_id: {{ticket_id}}</li>
-        <li>movies_name: {{movies_name}}</li>
-        <li>auditoriums_name: {{auditoriums_name}}</li>
-        <li>customers_name: {{customers_name}}</li>
-        <li>seat: {{seat}}</li>
-        <li>formatDateTime time: {{formatDateTime time}}</li>
-        <li>price: {{price}}</li>
+          <li>ticket_id: {{ticket_id}}</li>
+          <li>movies_name: {{movies_name}}</li>
+          <li>auditoriums_name: {{auditoriums_name}}</li>
+          <li>customers_name: {{customers_name}}</li>
+          <li>seat: {{seat}}</li>
+          <li>time: {{formatDateTime time}}</li>
+          <li>price: {{price}}</li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -112,8 +112,9 @@
             <button class="btn btn-secondary">Edit</button>
           </a></td>
         <td>
-        <button class="btn btn-danger" data-bs-toggle="modal"
-            data-bs-target="#deleteTickets{{ticket_id}}">Delete</button></td>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteTickets{{ticket_id}}">Delete</button>
+        </td>
       </tr>
       {{/each}}
     </tbody>

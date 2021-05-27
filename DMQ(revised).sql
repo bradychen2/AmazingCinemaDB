@@ -33,7 +33,7 @@ SELECT DISTINCT
 	time,
 	price
 FROM Tickets
-	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id
+	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
@@ -147,7 +147,7 @@ SELECT DISTINCT
 	price
 FROM
 	Tickets
-	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id
+	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
@@ -165,7 +165,7 @@ SELECT DISTINCT
 	price
 FROM
 	Tickets
-	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id
+	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
@@ -183,7 +183,7 @@ SELECT DISTINCT
 	price
 FROM
 	Tickets
-	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id
+	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
