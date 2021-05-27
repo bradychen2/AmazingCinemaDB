@@ -148,23 +148,34 @@ const queries = {
   updateTic: (res, mysql, updateInfo) => {
     return new Promise((resolve, reject) => {
       if (updateInfo[1].length === 0) {
-        updatesql = "UPDATE Tickets SET \
+        const updatesqlNoCus = "UPDATE Tickets SET \
           movie_auditorium_id = ?, \
           customer_id = NULL, \
           seat = ?, time =?, price =? \
           WHERE ticket_id = ?;"
 
         updateInfo.splice(1, 1)
+	mysql.pool.query(
+	  updatesqlNoCus,
+	  updateInfo,
+	  (error, results, fields) => {
+	    if (error) {
+	      reject(error)  
+	    }
+	    resolve()
+	  }
+	)
+      } else {
+        mysql.pool.query(
+	  updatesql,
+	  updateInfo,
+	  (error, results, fields) => {
+	    if (error) {
+	      reject(error)
+	    }
+	    resolve()
+	})
       }
-      mysql.pool.query(
-        updatesql,
-        updateInfo,
-        (error, results, fields) => {
-          if (error) {
-            reject(error)
-          }
-          resolve()
-        })
     })
   },
   getTicket: (res, mysql, ticket_id) => {

@@ -67,8 +67,8 @@ const queries = {
               Auditoriums.name AS auditorium_name, number_of_seats AS number_of_seats, \
               Theaters.theater_id, \
               Theaters.name AS theater_name, \
-              Projector_equipments.projector_equipment_id, \
-              Projector_equipments.type AS projector_equipment_type \
+              Projector_Equipments.projector_equipment_id, \
+              Projector_Equipments.type AS projector_equipment_type \
         FROM Auditoriums \
         INNER JOIN Theaters ON Auditoriums.theater_id = Theaters.theater_id \
         INNER JOIN Projector_Equipments ON Auditoriums.projector_equipment_id = Projector_Equipments.projector_equipment_id \
