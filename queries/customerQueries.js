@@ -42,7 +42,7 @@ const queries = {
   deleteCustomer: (res, mysql, customer_id) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
-        "DELETE FROM customers WHERE customer_id = ?;",
+        "DELETE FROM Customers WHERE customer_id = ?;",
         customer_id,
         (error, results, fields) => {
           if (error) {
