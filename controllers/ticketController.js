@@ -95,6 +95,7 @@ const ticketController = {
 
     try {
       context.ticket = await queries.getTicket(res, mysql, ticket_id)
+      console.log(context.ticket)
       res.render('editTicket', context)
     } catch (err) {
       console.log(err)

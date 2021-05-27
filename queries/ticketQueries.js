@@ -5,7 +5,7 @@ const sql_select =
                 Customers.name AS customers_name, \
                 seat, time, price \
     FROM Tickets \
-    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
     LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
     LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
@@ -19,7 +19,7 @@ const sql_search1 =
                 Customers.name AS customers_name, \
                 seat, time, price \
     FROM Tickets \
-    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
     LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
     LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
@@ -32,7 +32,7 @@ const sql_search2 =
                 Customers.name AS customers_name, \
                 seat, time, price \
     FROM Tickets \
-    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
     LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
     LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
@@ -45,7 +45,7 @@ const sql_search3 =
                 Customers.name AS customers_name, \
                 seat, time, price \
     FROM Tickets \
-    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+    LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
     LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
     LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
@@ -56,9 +56,9 @@ const sql_search3 =
                   Movies.name AS movies_name, Movies_Auditoriums.movie_auditorium_id, \
                   Auditoriums.name AS auditoriums_name,  \
                   Customers.name AS customers_name, Customers.customer_id, \
-                  seat, time, price \
+                  seat, time , price \
       FROM Tickets \
-      LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.auditorium_id \
+      LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
       LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \
       LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id \
       LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
