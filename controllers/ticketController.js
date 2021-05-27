@@ -4,7 +4,7 @@ const ticketController = {
   displayTickets: async (req, res) => {
     let context = {}
     const mysql = req.app.get('mysql')
-  
+
     try {
       context.tickets = await queries.getTickets(res, mysql)
       // console.log(context.tickets)
@@ -13,7 +13,7 @@ const ticketController = {
       console.log(err)
     }
   },
-  insertTickets:async(req, res) => {
+  insertTickets: async (req, res) => {
     const mysql = req.app.get('mysql')
     const inserts = [
       req.body.movieId,
@@ -32,7 +32,7 @@ const ticketController = {
       console.log(err)
     }
   },
-  filterTickets:async(req,res)=>{
+  filterTickets: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
     const searchBy = req.query.searchTicBy
@@ -71,7 +71,7 @@ const ticketController = {
   },
   editTicket: async (req, res) => {
     const mysql = req.app.get('mysql')
-    const updateInfo = [
+    let updateInfo = [
       req.body.movieId,
       req.body.customerId,
       req.body.seat,
@@ -79,9 +79,10 @@ const ticketController = {
       req.body.price,
       req.params.id
     ]
+
     try {
-      await queries.updateTic(res, mysql, updateInfo)
       console.log(updateInfo)
+      await queries.updateTic(res, mysql, updateInfo)
       return res.redirect('/tickets')
     } catch (err) {
       console.log(err)
@@ -95,13 +96,12 @@ const ticketController = {
 
     try {
       context.ticket = await queries.getTicket(res, mysql, ticket_id)
-      console.log(context.ticket)
       res.render('editTicket', context)
     } catch (err) {
       console.log(err)
     }
   }
-  }
+}
 
 
 module.exports = ticketController

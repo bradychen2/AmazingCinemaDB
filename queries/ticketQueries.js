@@ -51,8 +51,8 @@ const sql_search3 =
     LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
     WHERE LOWER(Customers.name) LIKE LOWER(?) ORDER BY Tickets.ticket_id;"
 
-    const sql_get =
-    "SELECT DISTINCT ticket_id, \
+const sql_get =
+  "SELECT DISTINCT ticket_id, \
                   Movies.name AS movies_name, Movies_Auditoriums.movie_auditorium_id, \
                   Auditoriums.name AS auditoriums_name,  \
                   Customers.name AS customers_name, Customers.customer_id, \
@@ -64,7 +64,8 @@ const sql_search3 =
       LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id \
       Where ticket_id=? \
       ORDER BY Tickets.ticket_id;";
-const updatesql = "UPDATE Tickets SET movie_auditorium_id = ?, customer_id = ?, seat = ?, time =?, price=? WHERE ticket_id= ?;"
+let updatesql = "UPDATE Tickets SET movie_auditorium_id = ?, customer_id = ?, seat = ?, time =?, price=? WHERE ticket_id= ?;"
+
 const queries = {
   getTickets: (res, mysql) => {
     return new Promise((resolve, reject) => {
@@ -146,6 +147,15 @@ const queries = {
   },
   updateTic: (res, mysql, updateInfo) => {
     return new Promise((resolve, reject) => {
+      if (updateInfo[1].length === 0) {
+        updatesql = "UPDATE Tickets SET \
+          movie_auditorium_id = ?, \
+          customer_id = NULL, \
+          seat = ?, time =?, price =? \
+          WHERE ticket_id = ?;"
+
+        updateInfo.splice(1, 1)
+      }
       mysql.pool.query(
         updatesql,
         updateInfo,
@@ -157,9 +167,9 @@ const queries = {
         })
     })
   },
-  getTicket: (res, mysql,ticket_id) => {
+  getTicket: (res, mysql, ticket_id) => {
     return new Promise((resolve, reject) => {
-      mysql.pool.query(sql_get,ticket_id, function (error, results, fields) {
+      mysql.pool.query(sql_get, ticket_id, function (error, results, fields) {
         if (error) {
           reject(error)
         }
