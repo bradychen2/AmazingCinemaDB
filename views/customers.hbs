@@ -1,4 +1,3 @@
-
 {{#each customers}}
 <div class="modal fade" id="deleteCus{{this.customer_id}}" tabindex="-1"
   aria-labelledby="deleteCus{{this.customer_id}}Label" aria-hidden="true">
@@ -14,10 +13,9 @@
         <div><strong>Are you sure to delete the data?</strong></div>
         </p>
         <ul>
-        <li>customer_id: {{customer_id}}</li>
-        <li>name: {{name}}</li>
-        <li>email: {{email}}</li>
-        <li>phone: {{phone}}</li>
+          <li>Name: {{name}}</li>
+          <li>Email: {{email}}</li>
+          <li>Phone: {{phone}}</li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -95,8 +93,9 @@
           </a>
         </td>
         <td>
-        <button class="btn btn-danger" data-bs-toggle="modal"
-            data-bs-target="#deleteCus{{customer_id}}">Delete</button></td>
+          <button class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#deleteCus{{customer_id}}">Delete</button>
+        </td>
       </tr>
       {{/each}}
     </tbody>
