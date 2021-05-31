@@ -39,20 +39,28 @@
   <form class="row" action="/tickets" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
-        <label for="movie-auditorium-id" class="form-label mx-2">movie auditorium id</label>
-        <input id="movie-auditorium-id" type="number" class="form-control" name="movieId">
+        <label for="showing-movies" class="form-label mx-2">showing movies</label>
+        <select id="showing-movies" class="form-select form-control mx-2" name="movie_auditorium_id">
+          {{#each showingMovies}}
+          <option value={{this.movie_auditorium_id}}>{{this.showingMovie}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="customer-id" class="form-label mx-2">customer id</label>
-        <input id="customer-id" type="number" class="form-control" name="customerId">
+        <label for="customer-id" class="form-label mx-2">customer</label>
+        <select id="customer-id" class="form-select form-control mx-2" name="customerId">
+          {{#each customers}}
+          <option value={{this.customer_id}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="input-group mb-3 align-items-center">
+        <label for="date" class="form-label mx-2">date</label>
+        <input id="date" type="date" class="form-control" name="date" placeholder="">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="seat" class="form-label mx-2">seat</label>
         <input id="seat" type="text" class="form-control" name="seat" placeholder="A17">
-      </div>
-      <div class="input-group mb-3 align-items-center">
-        <label for="time" class="form-label mx-2">time</label>
-        <input id="time" type="datetime-local" class="form-control" name="time">
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="price" class="form-label mx-2">price</label>

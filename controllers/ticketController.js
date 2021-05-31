@@ -1,4 +1,6 @@
 const queries = require('../queries/ticketQueries')
+const maQueries = require('../queries/movieAudiQueries')
+const cusQueries = require('../queries/customerQueries')
 
 const ticketController = {
   displayTickets: async (req, res) => {
@@ -7,7 +9,30 @@ const ticketController = {
 
     try {
       context.tickets = await queries.getTickets(res, mysql)
-      // console.log(context.tickets)
+      context.moviesAuditoriums = await maQueries.getMoviesAuditoriums(res, mysql)
+      context.customers = await cusQueries.getCustomers(res, mysql)
+      context.showingMovies = []
+
+      // build the strings and context.showingMovies
+      context.moviesAuditoriums.forEach(obj => {
+        let showingMovie =
+          obj.movie_name + ' at ' + obj.auditorium_name
+          + ', Time: ' + obj.time_slot
+        let movie_auditorium_id = obj.movie_auditorium_id
+        let time_slot = obj.time_slot
+        context.showingMovies.push({ showingMovie, movie_auditorium_id, time_slot })
+      })
+
+      // sort the showingMovies list by movie name
+      context.showingMovies =
+        context.showingMovies.sort((a, b) => {
+          if (a.showingMovie < b.showingMovie) { return -1 }
+          else if (a.showingMovie > b.showingMovie) { return 1 }
+          else { return 0 }
+        })
+
+      req.session.showingMovies = context.showingMovies
+      req.session.customers = context.customers
       res.render('tickets', context)
     } catch (err) {
       console.log(err)
@@ -15,18 +40,23 @@ const ticketController = {
   },
   insertTickets: async (req, res) => {
     const mysql = req.app.get('mysql')
-    const inserts = [
-      req.body.movieId,
-      req.body.customerId,
-      req.body.seat,
-      req.body.time,
-      req.body.price
-    ]
-    console.log(inserts)
 
     try {
-      await queries.creatTickets(mysql, inserts)
+      // concatenate date and time
+      const movieAudi =
+        await maQueries.getMovieAuditorium(res, mysql, req.body.movie_auditorium_id)
+      const time = movieAudi.time_slot
+      const dateTime = req.body.date + '-' + time
 
+      const inserts = [
+        req.body.movie_auditorium_id,
+        req.body.customerId,
+        req.body.seat,
+        dateTime,
+        req.body.price
+      ]
+
+      await queries.creatTickets(mysql, inserts)
       return res.redirect('/tickets')
     } catch (err) {
       console.log(err)
@@ -53,6 +83,8 @@ const ticketController = {
           context.tickets = await queries.getTickets(res, mysql)
       }
 
+      context.showingMovies = req.session.showingMovies
+      context.customers = req.session.customers
       return res.render('tickets', context)
     } catch (err) {
       console.log(err)

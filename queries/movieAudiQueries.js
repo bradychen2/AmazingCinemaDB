@@ -88,7 +88,9 @@ const queries = {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
         "SELECT Movies_Auditoriums.movie_auditorium_id, \
-	          Movies.name AS movie_name, \
+	          Movies.movie_id, \
+            Movies.name AS movie_name, \
+            Auditoriums.auditorium_id, \
             Auditoriums.name AS auditorium_name, \
             time_slot \
         FROM Movies_Auditoriums \
