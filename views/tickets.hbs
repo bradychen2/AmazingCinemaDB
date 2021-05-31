@@ -49,6 +49,7 @@
       <div class="input-group mb-3 align-items-center">
         <label for="customer-id" class="form-label mx-2">customer</label>
         <select id="customer-id" class="form-select form-control mx-2" name="customerId">
+          <option value="">Select a customer</option>
           {{#each customers}}
           <option value={{this.customer_id}}>{{this.name}}</option>
           {{/each}}

@@ -81,13 +81,34 @@ const queries = {
 
   creatTickets: (mysql, inserts) => {
     return new Promise((resolve, reject) => {
-      mysql.pool.query(sql_insert, inserts, function (error, results, fields) {
-        if (error) {
-          console.log(error);
-        }
-        resolve();
-      });
-    });
+      if (inserts[1].length === 0) {
+        const sqlInsertNoCus = "INSERT INTO \
+          Tickets(movie_auditorium_id, customer_id, seat, time, price) \
+          VALUES(?, NULL, ?, ?, ?);"
+        inserts.splice(1, 1)
+
+        mysql.pool.query(
+          sqlInsertNoCus,
+          inserts,
+          (error, results, fields) => {
+            if (error) {
+              reject(error)
+            }
+            resolve()
+          }
+        )
+      } else {
+        mysql.pool.query(
+          sql_insert,
+          inserts,
+          (error, results, fields) => {
+            if (error) {
+              console.log(error)
+            }
+            resolve()
+          })
+      }
+    })
   },
   searchTicByMovName: (res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {
@@ -155,26 +176,26 @@ const queries = {
           WHERE ticket_id = ?;"
 
         updateInfo.splice(1, 1)
-	mysql.pool.query(
-	  updatesqlNoCus,
-	  updateInfo,
-	  (error, results, fields) => {
-	    if (error) {
-	      reject(error)  
-	    }
-	    resolve()
-	  }
-	)
+        mysql.pool.query(
+          updatesqlNoCus,
+          updateInfo,
+          (error, results, fields) => {
+            if (error) {
+              reject(error)
+            }
+            resolve()
+          }
+        )
       } else {
         mysql.pool.query(
-	  updatesql,
-	  updateInfo,
-	  (error, results, fields) => {
-	    if (error) {
-	      reject(error)
-	    }
-	    resolve()
-	})
+          updatesql,
+          updateInfo,
+          (error, results, fields) => {
+            if (error) {
+              reject(error)
+            }
+            resolve()
+          })
       }
     })
   },
