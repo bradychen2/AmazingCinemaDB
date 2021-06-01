@@ -53,10 +53,10 @@ const sql_search3 =
 
 const sql_get =
   "SELECT DISTINCT ticket_id, \
-                  Movies.name AS movies_name, Movies_Auditoriums.movie_auditorium_id, \
-                  Auditoriums.name AS auditoriums_name,  \
+                  Movies.name AS movie_name, Movies_Auditoriums.movie_auditorium_id, \
+                  Auditoriums.name AS auditorium_name,  \
                   Customers.name AS customers_name, Customers.customer_id, \
-                  seat, time , price \
+                  seat, time AS dateTime , price \
       FROM Tickets \
       LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id \
       LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id \

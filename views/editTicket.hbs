@@ -4,22 +4,37 @@
   <form class="row" action="/tickets/{{ticket.ticket_id}}?_method=PUT" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
-        <label for="movie-auditorium-id" class="form-label mx-2">movie auditorium id</label>
-        <input id="movie-auditorium-id" type="number" class="form-control" name="movieId"
-          value="{{ticket.movie_auditorium_id}}">
+        <label for="showing-movies" class="form-label mx-2">showing movies</label>
+        <select id="showing-movies" class="form-select form-control mx-2" name="movie_auditorium_id">
+          {{#each showingMovies}}
+          {{#if_eq this.showingMovie ../ticket.defaultMovie}}
+          <option value={{this.movie_auditorium_id}} selected>{{this.showingMovie}}</option>
+          {{else}}
+          <option value={{this.movie_auditorium_id}}>{{this.showingMovie}}</option>
+          {{/if_eq}}
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="customer-id" class="form-label mx-2">customer id</label>
-        <input id="customer-id" type="number" class="form-control" name="customerId" value="{{ticket.customer_id}}">
+        <label for="customer-id" class="form-label mx-2">customer</label>
+        <select id="customer-id" class="form-select form-control mx-2" name="customerId">
+          <option value="">Select a customer</option>
+          {{#each customers}}
+          {{#if_eq this.customer_id ../ticket.customer_id}}
+          <option value={{this.customer_id}} selected>{{this.name}}</option>
+          {{else}}
+          <option value={{this.customer_id}}>{{this.name}}</option>
+          {{/if_eq}}
+          {{/each}}
+        </select>
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="seat" class="form-label mx-2">seat</label>
-        <input id="seat" type="text" class="form-control" name="seat" placeholder="A17" value="{{ticket.seat}}">
+        <input id="seat" type="text" class="form-control" name="seat" value="{{ticket.seat}}">
       </div>
       <div class="input-group mb-3 align-items-center">
-        <label for="time" class="form-label mx-2">time</label>
-        <input id="time" type="datetime-local" class="form-control" name="time"
-          value="{{formatDateTimeLocal ticket.time}}">
+        <label for="date" class="form-label mx-2">date</label>
+        <input id="date" type="date" class="form-control" name="date" value={{formatDate ticket.dateTime}}>
       </div>
       <div class="input-group mb-3 align-items-center">
         <label for="price" class="form-label mx-2">price</label>

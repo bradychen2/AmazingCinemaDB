@@ -13,7 +13,7 @@ const ticketController = {
       context.customers = await cusQueries.getCustomers(res, mysql)
       context.showingMovies = []
 
-      // build the strings and context.showingMovies
+      // build showing movie strings and context.showingMovies
       context.moviesAuditoriums.forEach(obj => {
         let showingMovie =
           obj.movie_name + ' at ' + obj.auditorium_name
@@ -31,6 +31,7 @@ const ticketController = {
           else { return 0 }
         })
 
+      // store information into session for dropdown rendering
       req.session.showingMovies = context.showingMovies
       req.session.customers = context.customers
       res.render('tickets', context)
@@ -38,6 +39,7 @@ const ticketController = {
       console.log(err)
     }
   },
+
   insertTickets: async (req, res) => {
     const mysql = req.app.get('mysql')
 
@@ -45,8 +47,7 @@ const ticketController = {
       // concatenate date and time
       const movieAudi =
         await maQueries.getMovieAuditorium(res, mysql, req.body.movie_auditorium_id)
-      const time = movieAudi.time_slot
-      const dateTime = req.body.date + '-' + time
+      const dateTime = req.body.date + '-' + movieAudi.time_slot
 
       const inserts = [
         req.body.movie_auditorium_id,
@@ -62,6 +63,7 @@ const ticketController = {
       console.log(err)
     }
   },
+
   filterTickets: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
@@ -90,6 +92,7 @@ const ticketController = {
       console.log(err)
     }
   },
+
   deleteTicket: async (req, res) => {
     const ticket_id = req.params.id
     const mysql = req.app.get('mysql')
@@ -101,19 +104,25 @@ const ticketController = {
       console.log(err)
     }
   },
+
   editTicket: async (req, res) => {
     const mysql = req.app.get('mysql')
-    let updateInfo = [
-      req.body.movieId,
-      req.body.customerId,
-      req.body.seat,
-      req.body.time,
-      req.body.price,
-      req.params.id
-    ]
 
     try {
-      console.log(updateInfo)
+      // concatenate date and time
+      const movieAudi =
+        await maQueries.getMovieAuditorium(res, mysql, req.body.movie_auditorium_id)
+      const dateTime = req.body.date + '-' + movieAudi.time_slot
+
+      let updateInfo = [
+        req.body.movie_auditorium_id,
+        req.body.customerId,
+        req.body.seat,
+        dateTime,
+        req.body.price,
+        req.params.id
+      ]
+
       await queries.updateTic(res, mysql, updateInfo)
       return res.redirect('/tickets')
     } catch (err) {
@@ -123,11 +132,28 @@ const ticketController = {
 
   getEditTicket: async (req, res) => {
     let context = {}
+    context.showingMovies = req.session.showingMovies
+    context.customers = req.session.customers
     const ticket_id = req.params.id
     const mysql = req.app.get('mysql')
 
     try {
       context.ticket = await queries.getTicket(res, mysql, ticket_id)
+
+      // only retrieve hours and mins from ticket.dateTime
+      let ticket = context.ticket
+      let recordDate = new Date(ticket.dateTime)
+      let hour = recordDate.getHours()
+      let minute = recordDate.getMinutes()
+      if (hour < 10) { hour = '0' + hour }
+      if (minute < 10) { minute = '0' + minute }
+      ticket.time = hour + ':' + minute + ':00'
+
+      // build showingMovie string and store as ticket.defaultMovie
+      let showingMovie =
+        ticket.movie_name + ' at ' + ticket.auditorium_name + ', Time: ' + ticket.time
+      ticket.defaultMovie = showingMovie
+
       res.render('editTicket', context)
     } catch (err) {
       console.log(err)
