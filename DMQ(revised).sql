@@ -28,15 +28,17 @@ SELECT DISTINCT
 	ticket_id,
 	Movies.name AS movies_name,
 	Auditoriums.name AS auditoriums_name,
-	Customers.name AS customers_name, 
+	Customers.name AS customers_name,
+	Projector_Equipments.type AS projector,
+	Projector_Equipments.ticket_price AS price,
 	seat,
 	time,
-	price
 FROM Tickets
 	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
+	LEFT JOIN Projector_Equipments ON Tickets.projector_equipment_id = Projector_Equipments.projector_equipment_id
 	ORDER BY Tickets.ticket_id;
 
 -- Theaters:
@@ -58,7 +60,8 @@ FROM Customers;
 -- Projector_Equipments:
 SELECT
 	projector_equipment_id,
-	type 
+	type,
+	ticket_price
 FROM Projector_Equipments;
 
 

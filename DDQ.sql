@@ -46,13 +46,13 @@ INSERT INTO `Customers` (`name`, `email`, `phone`) VALUES
 CREATE TABLE `Projector_Equipments` (
 	`projector_equipment_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `type` varchar(50) NOT NULL,
-    `price` DECIMAL NOT NULL 
+    `ticket_price` DECIMAL NOT NULL 
 );
 
-INSERT INTO `Projector_Equipments` (`type`,`price`) VALUES 
-	('Digital','200'),
-    ('IMAX','300'),
-    ('3D','250');
+INSERT INTO `Projector_Equipments` (`type`,`ticket_price`) VALUES 
+	('Digital','250'),
+    ('IMAX','400'),
+    ('3D','300');
 
 CREATE TABLE  `Auditoriums` (
 	`auditorium_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -15,6 +15,7 @@
         </p>
         <ul>
           <li>Type: {{type}}</li>
+          <li>Ticket Price: {{ticket_price}}</li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -65,6 +66,7 @@
       <tr>
         <th scope="col">projector_equipment_id</th>
         <th scope="col">type</th>
+        <th scope="col">ticket price</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -74,6 +76,7 @@
       <tr>
         <th scope="row">{{projector_equipment_id}}</th>
         <td>{{type}}</td>
+        <td>{{ticket_price}}</td>
         <td>
           <a href="/projectorEquipments/edit/{{this.projector_equipment_id}}">
             <button class="btn btn-secondary">Edit</button>

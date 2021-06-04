@@ -19,6 +19,7 @@
           <li>Customer Name: {{customers_name}}</li>
           <li>Seat: {{seat}}</li>
           <li>Time: {{formatDateTime time}}</li>
+          <li>Projector: {{projector}}</li>
           <li>Price: {{price}}</li>
         </ul>
       </div>
@@ -101,6 +102,7 @@
         <th scope="col">customers.name</th>
         <th scope="col">seat</th>
         <th scope="col">time</th>
+        <th scope="col">projector</th>
         <th scope="col">price</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -115,6 +117,7 @@
         <td>{{customers_name}}</td>
         <td>{{seat}}</td>
         <td>{{formatDateTime time}}</td>
+        <td>{{projector}}</td>
         <td>{{price}}</td>
         <td><a href="/tickets/edit/{{ticket_id}}">
             <button class="btn btn-secondary">Edit</button>
