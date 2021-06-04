@@ -103,18 +103,18 @@ CREATE TABLE `Tickets` (
 	`ticket_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `seat` varchar(50) NOT NULL,
     `time` datetime NOT NULL,
-    `projector_id` int NOT NULL,
+    `projector_equipment_id` int NOT NULL,
     `movie_auditorium_id` int NOT NULL,
     `customer_id` int default(NULL),
 	FOREIGN KEY (movie_auditorium_id)
     REFERENCES `Movies_Auditoriums` (movie_auditorium_id) ON DELETE CASCADE,
     FOREIGN KEY (customer_id)
     REFERENCES `Customers` (customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (projector_id)
+    FOREIGN KEY (projector_equipment_id)
     REFERENCES `Projector_Equipments` (projector_equipment_id) ON DELETE CASCADE
 );
 
-INSERT INTO `Tickets` (`seat`, `time`, `projector_id`, `movie_auditorium_id`, `customer_id`) VALUES 
+INSERT INTO `Tickets` (`seat`, `time`, `projector_equipment_id`, `movie_auditorium_id`, `customer_id`) VALUES 
 	('E11', '1977-06-08-14:00:00', 2, 1, 1), ('E12', '1977-08-13-14:00:00', 2, 1, 1), ('G10', '1977-10-11-19:00:00', 1, 1, null),
 	('F15', '1993-07-07-21:30:00', 2, 2, 2), ('K18', '1993-08-01-10:00:00', 2, 2, 3), ('J21', '1993-09-15-12:20:00', 1, 2, 3),
     ('H15', '1972-05-05-14:30:00', 2, 3, 3), ('I20', '1972-06-10-17:00:00', 2, 3, 3), ('F22', '1972-09-18-19:30:00', 1, 3, null),
@@ -124,7 +124,4 @@ INSERT INTO `Tickets` (`seat`, `time`, `projector_id`, `movie_auditorium_id`, `c
 	('E11', '1977-06-08-14:00:00', 3, 7, 1), ('E12', '1977-08-13-14:00:00', 3, 7, 1), ('G10', '1977-10-11-19:00:00', 2, 7, null),
 	('F15', '1993-07-07-21:30:00', 3, 8, 2), ('K18', '1993-08-01-10:00:00', 3, 8, 3), ('J21', '1993-09-15-12:20:00', 2, 8, 3),
     ('H15', '1972-05-05-14:30:00', 3, 9, 3), ('I20', '1972-06-10-17:00:00', 3, 9, 3), ('F22', '1972-09-18-19:30:00', 1, 9, null);
-
-
-
 

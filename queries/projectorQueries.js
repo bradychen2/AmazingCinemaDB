@@ -1,10 +1,10 @@
 const sql_select =
-  "SELECT projector_equipment_id, type FROM Projector_Equipments;";
+  "SELECT projector_equipment_id, type, ticket_price FROM Projector_Equipments;";
 const sql_insert =
-  "INSERT INTO Projector_Equipments(type) VALUES(?);";
+  "INSERT INTO Projector_Equipments(type, ticket_price) VALUES(?, ?);";
 const sql_search =
-  "SELECT projector_equipment_id, type FROM Projector_Equipments WHERE LOWER(type) LIKE LOWER(?);"
-const update = "UPDATE Projector_Equipments SET type =? WHERE projector_equipment_id =?;"
+  "SELECT projector_equipment_id, type, ticket_price FROM Projector_Equipments WHERE LOWER(type) LIKE LOWER(?);"
+const update = "UPDATE Projector_Equipments SET type=?, ticket_price=? WHERE projector_equipment_id=?;"
 
 const queries = {
   getProjectors: (res, mysql) => {
@@ -18,6 +18,7 @@ const queries = {
       });
     });
   },
+
   createProjectors: (mysql, inserts) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(sql_insert, inserts, function (error, results, fields) {
@@ -28,6 +29,7 @@ const queries = {
       })
     })
   },
+
   searchProjectors: ((res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(sql_search, searchKeyword,
@@ -40,6 +42,7 @@ const queries = {
         })
     })
   }),
+
   deleteProjector: (res, mysql, projector_equipment_id) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
@@ -53,7 +56,8 @@ const queries = {
         })
     })
   },
-  updateProjec: (res, mysql, updateInfo) => {
+
+  updateProjector: (res, mysql, updateInfo) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(update,
         updateInfo,
@@ -65,10 +69,11 @@ const queries = {
         })
     })
   },
+
   getProjector: (res, mysql, projector_equipment_id) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
-        "SELECT projector_equipment_id, type FROM Projector_Equipments Where projector_equipment_id=?;",
+        "SELECT projector_equipment_id, type, ticket_price FROM Projector_Equipments Where projector_equipment_id=?;",
         projector_equipment_id,
         (error, results, fields) => {
           if (error) {
@@ -78,7 +83,5 @@ const queries = {
         })
     })
   }
-
-
-};
+}
 module.exports = queries

@@ -54,7 +54,6 @@ const ticketController = {
         req.body.customerId,
         req.body.seat,
         dateTime,
-        req.body.price
       ]
 
       await queries.creatTickets(mysql, inserts)
@@ -119,7 +118,6 @@ const ticketController = {
         req.body.customerId,
         req.body.seat,
         dateTime,
-        req.body.price,
         req.params.id
       ]
 

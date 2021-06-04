@@ -144,16 +144,18 @@ SELECT DISTINCT
 	ticket_id,
 	Movies.name AS movies_name,
 	Auditoriums.name AS auditoriums_name,
-	Customers.name AS customers_name, 
+	Customers.name AS customers_name,
+	Projector_Equipments.type AS projector,
+	Projector_Equipments.ticket_price AS price,
 	seat,
-	time,
-	price
+	time
 FROM
 	Tickets
 	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
+	LEFT JOIN Projector_Equipments ON Tickets.projector_equipment_id = Projector_Equipments.projector_equipment_id
 WHERE LOWER(Movies.name) LIKE LOWER(:tic_movies_name_from_webpage)
 ORDER BY Tickets.ticket_id;
 
@@ -162,16 +164,18 @@ SELECT DISTINCT
 	ticket_id,
 	Movies.name AS movies_name,
 	Auditoriums.name AS auditoriums_name,
-	Customers.name AS customers_name, 
+	Customers.name AS customers_name,
+	Projector_Equipments.type AS projector,
+	Projector_Equipments.ticket_price AS price,
 	seat,
-	time,
-	price
+	time
 FROM
 	Tickets
 	LEFT JOIN Movies_Auditoriums ON Tickets.movie_auditorium_id = Movies_Auditoriums.movie_auditorium_id
 	LEFT JOIN Movies ON Movies_Auditoriums.movie_id = Movies.movie_id
 	LEFT JOIN Auditoriums ON Movies_Auditoriums.auditorium_id = Auditoriums.auditorium_id
 	LEFT JOIN Customers ON Tickets.customer_id = Customers.customer_id
+	LEFT JOIN Projector_Equipments ON Tickets.projector_equipment_id = Projector_Equipments.projector_equipment_id
 WHERE LOWER(Auditoriums.name) LIKE LOWER(:tic_auditoriums_name_from_webpage)
 ORDER BY Tickets.ticket_id;
 
@@ -290,31 +294,21 @@ DELETE FROM Movies_Auditoriums WHERE movie_auditorium_id = :M_A_ID_from_the_dele
 
 -- Tickets:
 -- INSERT
-INSERT INTO Tickets(movie_auditorium_id, customer_id, seat, time, price)VALUES(
+INSERT INTO Tickets(movie_auditorium_id, customer_id, seat, time, projector_equipment_id)VALUES(
  :tic_input_movieAuditoriumID,
  :tic_input_customerID,
  :tic_input_seat,
- -- SELECT time_slot FROM movies_auditoriums WHERE movie_auditorium_id = :tic_input_movieAuditoriumID
- :tic_input_time, -- get time from above SQL command and concate with the selected date by javascript
- --  (SELECT pe.type FROM projector_equipments  pe
- -- 	RIGHT JOIN auditoriums a ON a.projector_equipment_id = pe.projector_equipment_id
- --     RIGHT JOIN movies_auditoriums ma ON ma.auditorium_id = a.auditorium_id
- --     WHERE movie_auditorium_id = :tic_input_movieAuditoriumID)
- :tic_price -- get equipment type from the above SQL command and determine the price in the backend code
+ :tic_input_time,
+ :tic_projector_equipment_id
 );
 
 -- UPDATE	
-UPDATE Tickets
-SET movie_auditorium_id = :tic_edit_movieAuditoriumID,
+UPDATE Tickets SET 
+movie_auditorium_id = :tic_edit_movieAuditoriumID,
 customer_id = :tic_edit_customerID,
 seat = :tic_edit_seat,
--- SELECT time_slot FROM movies_auditoriums WHERE movie_auditorium_id = :tic_input_movieAuditoriumID
-time = :tic_edit_time, -- get time from above SQL command and concate with the selected date by javascript
---  (SELECT pe.type FROM projector_equipments  pe
--- 	   RIGHT JOIN auditoriums a ON a.projector_equipment_id = pe.projector_equipment_id
---     RIGHT JOIN movies_auditoriums ma ON ma.auditorium_id = a.auditorium_id
---     WHERE movie_auditorium_id = :tic_input_movieAuditoriumID)
-price = :tic_price -- get equipment type from the above SQL command and determine the price in the backend code
+time = :tic_edit_time, 
+projector_equipment_id = :tic_projector_equipment_id
 WHERE 
 	ticket_id	= :tic_ID_from_the_update_form;
     
@@ -357,11 +351,12 @@ DELETE FROM Customers WHERE customer_id = :cust_ID_from_the_delete_row;
 
 -- Projector_Equipments
 -- INSERT
-INSERT INTO Projector_Equipments(type) VALUES(:equip_input_type);
+INSERT INTO Projector_Equipments(type, ticket_price) VALUES(:equip_input_type, :ticket_price);
 
 -- UPDATE
 UPDATE Projector_Equipments 
-SET type = :equip_edit_type 
+SET type = :equip_edit_type
+		ticket_price = :ticket_price
 WHERE projector_equipment_id = :equip_ID_from_the_update_form;
 
 -- DELETE
