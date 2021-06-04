@@ -117,7 +117,14 @@ const queries = {
           res.write(JSON.stringify(error));
           res.end();
         }
-        resolve(results);
+
+        results.forEach(ticket => {
+          // if has customer info, price gets 20% off
+          if (ticket.customers_name) {
+            ticket.price = 0.8 * ticket.price
+          }
+        })
+        resolve(results)
       });
     });
   },
