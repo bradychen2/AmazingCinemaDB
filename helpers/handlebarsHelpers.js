@@ -54,10 +54,42 @@ Handlebars.registerHelper('if_eq', function (inputId, fkId, opts) {
   }
 })
 
-Handlebars.registerHelper('includeExclude', function (entity1, entity2, opts) {
-  if (entity1 && !entity2) {
-    return opts.fn(this)
-  } else {
-    return opts.inverse(this)
-  }
-})
+// Handlebars.registerHelper('renderNavbar', function () {
+//   let title = document.getElementById('title').textContent.toLowerCase()
+//   let pageList = ['movies', 'tickets', 'theaters', 'customers', 'projectors']
+//   let listItems = `         
+//         <li class="nav-item">
+//           <a class="nav-link" aria-current="page" href="/movies">Movies&Auditoriums</a>
+//         </li>`
+//   if (title === pageList[0]) {
+//     listItems = `         
+//         <li class="nav-item">
+//           <a class="nav-link active" aria-current="page" href="/movies">Movies&Auditoriums</a>
+//         </li>`
+//   }
+
+//   for (let i = 1; i < 5; i++) {
+//     if (pageList[i] === title) {
+//       listItems += `
+//         <li class="nav-item">
+//           <a class="nav-link active" aria-current="page" href="/${pageList[i]}">
+//           ${pageList[i].charAt(0).toUpperCase() + pageList[i].slice(1)}
+//           </a>
+//         </li>`
+//     }
+//     listItems += `
+//         <li class="nav-item">
+//           <a class="nav-link" aria-current="page" href="/${pageList[i]}">
+//           ${pageList[i].charAt(0).toUpperCase() + pageList[i].slice(1)}
+//           </a>
+//         </li>`
+//   }
+// })
+
+// Handlebars.registerHelper('includeExclude', function (entity1, entity2, opts) {
+//   if (entity1 && !entity2) {
+//     return opts.fn(this)
+//   } else {
+//     return opts.inverse(this)
+//   }
+// })

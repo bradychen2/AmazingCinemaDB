@@ -12,10 +12,59 @@
 
 <body>
   {{!-- Navbar --}}
-  {{>navbars}}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">AmazingCinemaDB</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" id="navbar-list">
+          <li class="nav-item">
+            <a class="nav-link" id="movies-page" aria-current="page" href="/movies">Movies&Auditoriums</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link tickets" id="tickets-page" aria-current="page" href=" /tickets">Tickets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link theaters" id="theaters-page" aria-current="page" href="/theaters">Theaters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link customers" id="customers-page" aria-current="page" href="/customers">Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="projectors-page" aria-current="page" href="/projectors">Projectors</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   {{!-- Body --}}
   {{{body}}}
 </body>
+<script>
+  function setNavLink() {
+    let navbarListItems = document.getElementById('navbar-list').children
+    let title = document.getElementById('title').textContent.toLowerCase()
+
+    for (let item of navbarListItems) {
+      let pageLink = item.children[0]
+      if (pageLink.classList.contains('active')) {
+        pageLink.classList.toggle('active')
+      }
+    }
+    for (let item of navbarListItems) {
+      let pageLink = item.children[0]
+      let pageId = pageLink.id.replace('-page', '')
+      if (pageId === title) {
+        pageLink.classList.toggle('active')
+      }
+    }
+  }
+
+  setNavLink()
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
   integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"

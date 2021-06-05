@@ -20,7 +20,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="/projectorEquipments/{{this.projector_equipment_id}}?_method=DELETE" method="POST">
+        <form action="/projectors/{{this.projector_equipment_id}}?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>
         </form>
       </div>
@@ -30,9 +30,9 @@
 {{/each}}
 
 <div class="container">
-  <h2>Projector Equipments</h2>
+  <h2 id="title">Projectors</h2>
   {{!-- Form --}}
-  <form class="row" action="/projectorEquipments" method="POST">
+  <form class="row" action="/projectors" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="type" class="form-label mx-2">type</label>
@@ -49,7 +49,7 @@
   </form>
 
   {{!-- Filter --}}
-  <form class="row" action="/projectorEquipments/search" method="GET">
+  <form class="row" action="/projectors/search" method="GET">
     <div class="col-md-6 col-sm-10">
       <div class="input-group my-3 align-items-center">
         <label for="search" class="form-label mx-2">Search By</label>
@@ -82,7 +82,7 @@
         <td>{{type}}</td>
         <td>{{ticket_price}}</td>
         <td>
-          <a href="/projectorEquipments/edit/{{this.projector_equipment_id}}">
+          <a href="/projectors/edit/{{this.projector_equipment_id}}">
             <button class="btn btn-secondary">Edit</button>
           </a>
         </td>

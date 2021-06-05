@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+{{!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">AmazingCinemaDB</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -6,8 +6,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
+      <ul class="navbar-nav" id="navbar-list">
+        {{renderNavbar}} --}}
+        {{!-- <li class="nav-item">
           <a class="nav-link {{#if moviesAuditoriums}}active{{/if}}" aria-current="page"
             href="/movies">Movies&Auditoriums</a>
         </li>
@@ -23,9 +24,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link {{#includeExclude projector movies}}active{{/includeExclude}}"
-            href="/projectorEquipments">Projectors</a>
-        </li>
+            href="/projectors">Projectors</a>
+        </li> --}}
+        {{!--
       </ul>
     </div>
   </div>
-</nav>
+</nav> --}}

@@ -56,12 +56,12 @@ module.exports = (app) => {
 
 
   // ---------------------------Projectors--------------------------
-  app.get('/projectorEquipments', projectorController.displayProjectors)
-  app.post('/projectorEquipments', projectorController.insertProjectors)
-  app.get('/projectorEquipments/search', projectorController.filterProjectors)
-  app.delete('/projectorEquipments/:id', projectorController.deleteProjectors)
-  app.get('/projectorEquipments/edit/:id', projectorController.getEditPro)
-  app.put('/projectorEquipments/:id', projectorController.editPro)
+  app.get('/projectors', projectorController.displayProjectors)
+  app.post('/projectors', projectorController.insertProjectors)
+  app.get('/projectors/search', projectorController.filterProjectors)
+  app.delete('/projectors/:id', projectorController.deleteProjectors)
+  app.get('/projectors/edit/:id', projectorController.getEditPro)
+  app.put('/projectors/:id', projectorController.editPro)
 
 
   // ----------------------------Customers---------------------------
@@ -69,7 +69,6 @@ module.exports = (app) => {
   app.post('/customers', customerController.insertCustomers)
   app.get('/customers/search', customerController.filterCustomers)
   app.delete('/customers/:id', customerController.deleteCus)
-
   app.get('/customers/edit/:id', customerController.getEditCus)
   app.put('/customers/:id', customerController.editCus)
 
