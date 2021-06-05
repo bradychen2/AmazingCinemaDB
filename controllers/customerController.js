@@ -1,26 +1,25 @@
 const queries = require('../queries/customerQueries')
 
 const customerController = {
-  displayCustomers: async(req, res) => {
+  displayCustomers: async (req, res) => {
 
     let context = {}
     const mysql = req.app.get('mysql')
     try {
       context.customers = await queries.getCustomers(res, mysql)
-      // console.log(context.customers)
-      res.render('customers',context)
+      res.render('customers', context)
     } catch (err) {
       console.log(err)
     }
   },
-  insertCustomers:async(req,res) => {
+
+  insertCustomers: async (req, res) => {
     const mysql = req.app.get('mysql')
     const inserts = [
       req.body.name,
       req.body.email,
       req.body.phone
     ]
-    console.log(inserts)
 
     try {
       await queries.createCustomers(mysql, inserts)
@@ -30,7 +29,8 @@ const customerController = {
       console.log(err)
     }
   },
-  filterCustomers: async(req,res)=>{
+
+  filterCustomers: async (req, res) => {
     const mysql = req.app.get('mysql')
     let context = {}
     const searchBy = req.query.searchCusBy
@@ -42,12 +42,13 @@ const customerController = {
       } else {
         context.customers = await queries.searchCustomers(res, mysql, searchKeyword)
       }
-      
+
       res.render('customers', context)
     } catch (err) {
       console.log(err)
     }
   },
+
   deleteCus: async (req, res) => {
     const customer_id = req.params.id
     const mysql = req.app.get('mysql')
@@ -59,6 +60,7 @@ const customerController = {
       console.log(err)
     }
   },
+
   getEditCus: async (req, res) => {
     let context = {}
     const customer_id = req.params.id
@@ -83,12 +85,13 @@ const customerController = {
 
     try {
       await queries.updateCus(res, mysql, updateInfo)
-      
+
       return res.redirect('/customers')
     } catch (err) {
       console.log(err)
     }
   },
+
   getEditCus: async (req, res) => {
     let context = {}
     const customer_id = req.params.id

@@ -1,7 +1,7 @@
 <div class="container my-2">
   <h2>Projectors</h2>
   {{!-- Form --}}
-  <form class="row" action="/projectorEquipments/{{projector.projector_equipment_id}}?_method=PUT" method="POST">
+  <form class="row" action="/projectors/{{projector.projector_equipment_id}}?_method=PUT" method="POST">
     <div class="col-md-6 col-sm-10">
       <div class="input-group mb-3 align-items-center">
         <label for="type" class="form-label mx-2">type</label>
@@ -17,7 +17,7 @@
           <input class="btn btn-primary" type="submit" value="Update">
         </div>
         <div class="mx-3">
-          <a href="/projectorEquipments" class="btn btn-secondary">Cancel</a>
+          <a href="/projectors" class="btn btn-secondary">Cancel</a>
         </div>
       </div>
 

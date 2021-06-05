@@ -14,16 +14,18 @@ const queries = {
       })
     })
   },
+
   createCustomers: (mysql, inserts) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(sql_insert, inserts, function (error, results, fields) {
         if (error) {
-          console.log(error);
+          console.log(error)
         }
-        resolve();
-      });
-    });
+        resolve()
+      })
+    })
   },
+
   searchCustomers: (res, mysql, searchKeyword) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
@@ -31,14 +33,15 @@ const queries = {
         searchKeyword,
         (error, results, fields) => {
           if (error) {
-            res.write(JSON.stringify(error));
-            res.end();
+            res.write(JSON.stringify(error))
+            res.end()
           }
-          resolve(results);
+          resolve(results)
         }
-      );
-    });
+      )
+    })
   },
+
   deleteCustomer: (res, mysql, customer_id) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
@@ -52,6 +55,7 @@ const queries = {
         })
     })
   },
+
   updateCus: (res, mysql, updateInfo) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(
@@ -69,6 +73,7 @@ const queries = {
         })
     })
   },
+
   getCus: (res, mysql, customer_id) => {
     return new Promise((resolve, reject) => {
       mysql.pool.query(

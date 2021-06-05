@@ -25,7 +25,7 @@ const projectorController = {
     try {
       await queries.createProjectors(mysql, inserts)
 
-      return res.redirect('/projectorEquipments')
+      return res.redirect('/projectors')
     } catch (err) {
       console.log(err)
     }
@@ -55,7 +55,7 @@ const projectorController = {
 
     try {
       await queries.deleteProjector(res, mysql, projector_equipment_id)
-      res.redirect('/projectorEquipments')
+      res.redirect('/projectors')
     } catch (err) {
       console.log(err)
     }
@@ -72,7 +72,7 @@ const projectorController = {
     try {
       await queries.updateProjector(res, mysql, updateInfo)
 
-      return res.redirect('/projectorEquipments')
+      return res.redirect('/projectors')
     } catch (err) {
       console.log(err)
     }
