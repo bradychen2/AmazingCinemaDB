@@ -129,7 +129,7 @@
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" name="searchMoviesBy">
           <option value="">Search By</option>
-          <option value="movieName">name</option>
+          <option value="movieName">Movie Name</option>
         </select>
         <input type="text" class="form-control mx-2" name="moviesKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
@@ -141,11 +141,11 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">movie_id</th>
-        <th scope="col">name</th>
-        <th scope="col">release_date</th>
-        <th scope="col">out_of_theater_date</th>
-        <th scope="col">rating</th>
+        <th scope="col">Movie Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Out of Theater Date</th>
+        <th scope="col">Rating</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -217,9 +217,9 @@
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" name="searchAuditoriumsBy">
           <option value="">Search By</option>
-          <option value="auditoriumName">auditoriums.name</option>
-          <option value="theaterName">theaters.name</option>
-          <option value="projectorType">projector_equipments.type</option>
+          <option value="auditoriumName">Auditoriums Name</option>
+          <option value="theaterName">Theaters Name</option>
+          <option value="projectorType">Projector Type</option>
         </select>
         <input type="text" class="form-control mx-2" name="auditoriumsKeyword">
         <input class="btn btn-outline-primary mx-2" type="submit" value="Search">
@@ -231,11 +231,11 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">auditorium_id</th>
-        <th scope="col">auditoriums.name</th>
-        <th scope="col">number_of_seats</th>
-        <th scope="col">theaters.name</th>
-        <th scope="col">projector_equipments.type</th>
+        <th scope="col">Auditorium Id</th>
+        <th scope="col">Auditoriums</th>
+        <th scope="col">Number of Seats</th>
+        <th scope="col">Theaters</th>
+        <th scope="col">Projector Type</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -302,8 +302,8 @@
         <label for="search" class="form-label mx-2">Search By</label>
         <select id="search" class="form-select form-control mx-2" name="searchMoviesAudisBy">
           <option selected>Search By</option>
-          <option value="movieName">movies.name</option>
-          <option value="auditoriumName">auditoriums.name</option>
+          <option value="movieName">Movie Name</option>
+          <option value="auditoriumName">Auditoriums Name</option>
           {{!-- <option value="timeSlot">time_slot</option> --}}
         </select>
         <input type="text" class="form-control mx-2" name="moviesAudisKeyword">
@@ -316,10 +316,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">movie_auditorium_id</th>
-        <th scope="col">movies.name</th>
-        <th scope="col">auditoriums.name</th>
-        <th scope="col">time_slot</th>
+        <th scope="col">Movie Auditorium Id</th>
+        <th scope="col">Movies</th>
+        <th scope="col">Auditoriums</th>
+        <th scope="col">Time Slot</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
