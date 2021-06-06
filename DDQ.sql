@@ -109,7 +109,7 @@ CREATE TABLE `Tickets` (
 	FOREIGN KEY (movie_auditorium_id)
     REFERENCES `Movies_Auditoriums` (movie_auditorium_id) ON DELETE CASCADE,
     FOREIGN KEY (customer_id)
-    REFERENCES `Customers` (customer_id) ON DELETE CASCADE,
+    REFERENCES `Customers` (customer_id) ON DELETE SET NULL,
     FOREIGN KEY (projector_equipment_id)
     REFERENCES `Projector_Equipments` (projector_equipment_id) ON DELETE CASCADE
 );
