@@ -138,9 +138,10 @@ const queries = {
         inserts,
         (error, results, fields) => {
           if (error) {
-            console.log(error);
+            reject(error)
+          } else {
+            resolve()
           }
-          resolve();
         }
       );
     });

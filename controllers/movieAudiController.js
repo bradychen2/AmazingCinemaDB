@@ -161,6 +161,7 @@ const movieAudiController = {
       return res.redirect('/movies')
     } catch (err) {
       console.log(err)
+      res.status(400).send({err: 'Unable to create movie'})
     }
   },
 
