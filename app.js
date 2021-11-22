@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 const mysql = require('./config/mysql')
-const session = require('express-session')
+const session = require('cookie-session')
 const methodOverride = require('method-override')
 var app = express()
 
